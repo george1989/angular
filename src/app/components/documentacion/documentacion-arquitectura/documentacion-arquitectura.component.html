@@ -1,0 +1,293 @@
+<div>
+	<div *ngIf="!submitted">
+		<mat-card class="banner">
+			<br><br>
+			<br><br>
+			<mat-card-title>MATRIZ DOCUMENTACI&Oacute;N</mat-card-title>
+			<mat-card-footer>
+			</mat-card-footer>
+		</mat-card>
+			<br>
+	  <button mat-fab color="primary" (click)="disablePanel()">
+		<mat-icon>home</mat-icon>
+	  </button>
+	  <h1> {{title}}</h1>
+	  <mat-tab-group>
+		<mat-tab label="Informacion">
+		  <div>
+			<h3>Datos</h3>
+			<div class="form-group" hidden="true">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Id</mat-label>
+				<input id="id" disabled="true" matInput [(ngModel)]="currentDocumentacionArquitectura.id">
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Metodolog&iacute;a</mat-label>
+				<mat-select id="metodologiaMat" value="{{currentDocumentacionArquitectura.metodologiaMat}}" [(ngModel)]="currentDocumentacionArquitectura.metodologiaMat">
+				  <mat-option *ngFor="let value of detalleCatalogoMetodo " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Area</mat-label>
+				<mat-select id="areaMat" value="{{currentDocumentacionArquitectura.areaMat}}" [(ngModel)]="currentDocumentacionArquitectura.areaMat">
+				  <mat-option *ngFor="let value of detalleCatalogoArea " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Etapa</mat-label>
+				<mat-select id="etapaMat" value="{{currentDocumentacionArquitectura.etapaMat}}" [(ngModel)]="currentDocumentacionArquitectura.etapaMat">
+				  <mat-option *ngFor="let value of detalleCatalogoEtapa " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Documento</mat-label>
+				<mat-select id="idDoc" value="{{currentDocumentacionArquitectura.idDoc}}" [(ngModel)]="currentDocumentacionArquitectura.idDoc">
+				  <mat-option *ngFor="let value of detalleCatalogoDocumento " value="{{value.id}}"> {{ value.nombreDoc }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Publicaci&oacute;n</mat-label>
+				<input id="publicacionMat" matInput [(ngModel)]="currentDocumentacionArquitectura.publicacionMat">
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Firma</mat-label>
+				<mat-select id="firmaMat" value="{{currentDocumentacionArquitectura.firmaMat}}" [(ngModel)]="currentDocumentacionArquitectura.firmaMat">
+				  <mat-option *ngFor="let value of detalleCatalogoSelSimple " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Firmante</mat-label>
+				<input id="firmanteMat" matInput [(ngModel)]="currentDocumentacionArquitectura.firmanteMat">
+			  </mat-form-field>
+			</div>
+			<div class="form-group" >
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Versiones</mat-label>
+				<textarea id="versionesMat" matInput [(ngModel)]="currentDocumentacionArquitectura.versionesMat"></textarea>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Obligatorio</mat-label>
+				<mat-select id="obligatorioMat" value="{{currentDocumentacionArquitectura.obligatorioMat}}" [(ngModel)]="currentDocumentacionArquitectura.obligatorioMat">
+				  <mat-option *ngFor="let value of detalleCatalogoSelSimple " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Observaciones</mat-label>
+				<textarea id="observacionMat" matInput [(ngModel)]="currentDocumentacionArquitectura.observacionMat"></textarea>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Notas</mat-label>
+				<textarea id="notaMat" matInput [(ngModel)]="currentDocumentacionArquitectura.notaMat"></textarea>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+				<button mat-flat-button color="primary" (click)="saveDocumentacionArquitectura()">
+				<mat-icon>save</mat-icon>&nbsp;Guardar
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="cleanPanel()">
+				<mat-icon>insert_drive_file</mat-icon>&nbsp;Nuevo
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="disablePanel()">
+				<mat-icon>close</mat-icon>&nbsp;Cerrar
+			  </button>
+			  <br>
+			  <br>  
+			</div>
+		  </div>
+		</mat-tab>
+		<mat-tab label="Consideraciones" *ngIf="tabActive">
+		  <div class="card">
+			<div class="card-body">
+			  <app-documentacion-aplicacion [viewMode]="false" [currentMatriz]="currentDocumentacionArquitectura"></app-documentacion-aplicacion>
+			</div>
+		  </div>
+		</mat-tab>
+	  </mat-tab-group>
+	</div>
+	<div *ngIf="tableActive">	
+		<mat-card class="banner">
+			<br><br>
+			<br><br>
+			<mat-card-title>MATRIZ DOCUMENTACI&Oacute;N</mat-card-title>
+			<mat-card-content>
+			  <br><br>
+			  <br><br>
+			  <br><br>
+			  <p>
+			  Matriz de documentos.
+			</p>
+			</mat-card-content>
+			<mat-card-footer>
+			</mat-card-footer>
+		</mat-card>
+			<br>	
+		<button mat-flat-button color="primary" (click)="enablePanel()" *ngIf="submitted">
+		<mat-icon>add</mat-icon>&nbsp;A&ntilde;adir
+	</button>
+	  <div >
+		<mat-tab-group>
+		  <mat-tab label="Filtro">
+			<div>
+				<table class="example-full-width" cellspacing="0"><tr>
+				<td>
+			  <div >
+				<mat-form-field appearance="fill" >
+				  <mat-label>Metodolog&iacute;a</mat-label>
+				  <mat-select value="{{filtro.metodologiaMat}}" [(ngModel)]="filtro.metodologiaMat" (selectionChange)="getDocumentacionArquitecturaFilter()">
+					<mat-option *ngFor="let value of detalleCatalogoMetodo " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				  </mat-select>
+				</mat-form-field>
+			  </div></td>
+			  <td>
+			  <div>
+				<mat-form-field appearance="fill" >
+				  <mat-label>Area</mat-label>
+				  <mat-select  value="{{filtro.areaMat}}" [(ngModel)]="filtro.areaMat" (selectionChange)="getDocumentacionArquitecturaFilter()">
+					<mat-option *ngFor="let value of detalleCatalogoArea " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				  </mat-select>
+				</mat-form-field>
+			  </div></td>
+				<td>
+			  <div >
+				<mat-form-field appearance="fill" >
+				  <mat-label>Etapa</mat-label>
+				  <mat-select  value="{{filtro.etapaMat}}" [(ngModel)]="filtro.etapaMat" (selectionChange)="getDocumentacionArquitecturaFilter()">
+					<mat-option *ngFor="let value of detalleCatalogoEtapa " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				  </mat-select>
+				</mat-form-field>
+			  </div>
+			  </td><td>
+			  <div >
+				<mat-form-field appearance="fill" >
+				  <mat-label>Documento</mat-label>
+				  <mat-select value="{{filtro.idDoc}}" [(ngModel)]="filtro.idDoc" (selectionChange)="getDocumentacionArquitecturaFilter()">
+					<mat-option *ngFor="let value of detalleCatalogoDocumento " value="{{value.id}}"> {{ value.nombreDoc }}</mat-option>
+				  </mat-select>
+				</mat-form-field>
+			  </div></td>
+			</tr>
+			</table>
+			</div>
+		  </mat-tab>
+		</mat-tab-group>
+	  </div>
+
+
+
+
+	  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >		
+		<ng-container matColumnDef="ico">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let element">
+				<mat-icon  color="primary" >navigate_next</mat-icon>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="id" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> Id </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.id}} </td>
+		</ng-container>
+		<ng-container matColumnDef="areaMat">
+		  <th mat-header-cell *matHeaderCellDef> Area </th>
+		  <td mat-cell *matCellDef="let element">
+			<ul>
+				<select value="{{element.areaMat}}" class="tabla-sf" disabled="true" [(ngModel)]="element.areaMat">
+				  <option *ngFor="let value of detalleCatalogoArea " value="{{value.id}}"> {{ value.nombreDet }}</option>
+				</select>
+			</ul>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="metodologiaMat">
+		  <th mat-header-cell *matHeaderCellDef> Metodolog&iacute;a </th>
+		  <td mat-cell *matCellDef="let element">
+			<select value="{{element.metodologiaMat}}" class="tabla-sf-lar" disabled="true" [(ngModel)]="element.metodologiaMat">
+			  <option *ngFor="let value of detalleCatalogoMetodo" value="{{value.id}}"> {{ value.nombreDet }}</option>
+			</select>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="etapaMat">
+		  <th mat-header-cell *matHeaderCellDef> Etapa </th>
+		  <td mat-cell *matCellDef="let element">
+			<select value="{{element.etapaMat}}" class="tabla-sf-com" disabled="true" [(ngModel)]="element.etapaMat">
+			  <option *ngFor="let value of detalleCatalogoEtapa " value="{{value.id}}"> {{ value.nombreDet }}</option>
+			</select>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="idDoc">
+		  <th mat-header-cell *matHeaderCellDef> Documento </th>
+		  <td mat-cell *matCellDef="let element">
+			<select value="{{element.idDoc}}" class="tabla-sf-lar" disabled="true" [(ngModel)]="element.idDoc">
+			  <option *ngFor="let value of detalleCatalogoDocumento" value="{{value.id}}"> {{ value.nombreDoc }}</option>
+			</select>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="publicacionMat" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> Publicaci&oacute;n </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.publicacionMat}} </td>
+		</ng-container>
+		<ng-container matColumnDef="firmaMat">
+		  <th mat-header-cell *matHeaderCellDef> Firma </th>
+		  <td mat-cell *matCellDef="let element">
+			<select value="{{element.firmaMat}}" class="tabla-sf-lar" disabled="true" [(ngModel)]="element.firmaMat">
+			  <option *ngFor="let value of detalleCatalogoSelSimple " value="{{value.id}}"> {{ value.nombreDet }}</option>
+			</select>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="firmanteMat">
+		  <th mat-header-cell *matHeaderCellDef> Firmante</th>
+		  <td mat-cell *matCellDef="let element"> {{element.firmanteMat}} </td>
+		</ng-container>
+		<ng-container matColumnDef="versionesMat" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> Versiones</th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.versionesMat}} </td>
+		</ng-container>
+		<ng-container matColumnDef="obligatorioMat">
+		  <th mat-header-cell *matHeaderCellDef> Obligatorio </th>
+		  <td mat-cell *matCellDef="let element">
+			<select value="{{element.obligatorioMat}}" class="tabla-sf-lar" disabled="true" [(ngModel)]="element.obligatorioMat">
+			  <option *ngFor="let value of detalleCatalogoSelSimple " value="{{value.id}}"> {{ value.nombreDet }}</option>
+			</select>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="observacionMat" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> Observaciones </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.observacionMat}} </td>
+		</ng-container>
+		<ng-container matColumnDef="notaMat" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> Notas </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.notaMat}} </td>
+		</ng-container>
+		<ng-container matColumnDef="getEdit">
+		  <th mat-header-cell *matHeaderCellDef></th>
+		  <td mat-cell *matCellDef="let element">
+			<button mat-icon-button color="primary" matTooltip="Editar item" (click)="editDocumentacionArquitectura(element)">
+			  <mat-icon>edit</mat-icon>
+			</button>
+		  </td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;"  
+		(mouseover)="row.hovered = true" (mouseout)="row.hovered = false" (click)="openDialog(row)"></tr>
+	  </table>
+	</div>
+  </div>

@@ -1,0 +1,85 @@
+<h1 mat-dialog-title>{{data.nombreLog}}</h1>
+<div mat-dialog-content >
+  <div>
+
+    <div class="form-group" hidden="true">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Id</mat-label>
+        <input id="id" disabled="true" readonly matInput [(ngModel)]="data.id">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Nombre</mat-label>
+        <input id="nombreLog" readonly matInput [(ngModel)]="data.nombreLog">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Descripcion</mat-label>
+        <textarea id="descripcionLog" rows="7" wrap="hard" readonly matInput [(ngModel)]="data.descripcionLog"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Tipo</mat-label>
+      <input id="tipoLog" readonly matInput [(ngModel)]="data.tipoLog">
+    </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Fuente Geneneradora</mat-label>
+        <input id="fueGenLog" readonly matInput [(ngModel)]="data.fueGenLog">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Sincronizacion</mat-label>
+      <input id="sincronizacionLog" readonly matInput [(ngModel)]="data.sincronizacionLog">
+    </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Formato</mat-label>
+        <input id="formatoLog" readonly matInput [(ngModel)]="data.formatoLog">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Retencion</mat-label>
+        <input id="retencionLog" readonly matInput [(ngModel)]="data.retencionLog">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Backup</mat-label>
+        <input id="backupLog" readonly matInput [(ngModel)]="data.backupLog">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Frecuencia Backup</mat-label>
+        <input id="freBacLog" readonly matInput [(ngModel)]="data.freBacLog">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Monitoreo</mat-label>
+        <input id="monitoreoLog" readonly matInput [(ngModel)]="data.monitoreoLog">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Servidor</mat-label>
+      <input id="idSer" readonly matInput [(ngModel)]="data.idSer">
+    </mat-form-field>
+    </div>
+    <div class="form-group" hidden="true">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>idApl</mat-label>
+        <input id="idApl" disabled="true" readonly matInput [(ngModel)]="data.idApl">
+      </mat-form-field>
+  </div> 
+    </div>
+
+</div>

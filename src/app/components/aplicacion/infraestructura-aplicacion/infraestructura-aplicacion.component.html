@@ -1,0 +1,131 @@
+<div >
+  <div *ngIf="!submitted">
+    <h3>Ingreso Informaci&oacute;n</h3>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo" hidden="true">
+        <mat-label>id</mat-label>
+        <input id="id" disabled="true" matInput [(ngModel)]="newInfraestructuraAplicacion.id">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Ambiente</mat-label>
+        <mat-select id="ambienteInf" value="{{newInfraestructuraAplicacion.ambienteInf}}" [(ngModel)]="newInfraestructuraAplicacion.ambienteInf">
+          <mat-option *ngFor="let value of detalleCatalogoAmbiente " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Ruta Aplicacion</mat-label>
+        <input id="rutaInf" matInput [(ngModel)]="newInfraestructuraAplicacion.rutaInf">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Detalle</mat-label>
+        <textarea id="detalleInf"  rows="6" wrap="hard" matInput [(ngModel)]="newInfraestructuraAplicacion.detalleInf"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Servidor</mat-label>
+        <mat-select id="idSer" value="{{newInfraestructuraAplicacion.idSer}}" [(ngModel)]="newInfraestructuraAplicacion.idSer">
+          <mat-option *ngFor="let value of detalleCatalogoSer " value="{{value.id}}"> {{ value.nombreSer }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group" hidden="true">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>idApl</mat-label>
+        <input id="idApl" disabled="true" matInput [(ngModel)]="newInfraestructuraAplicacion.idApl">
+      </mat-form-field>
+  </div> 
+    <div class="form-group">
+      <button mat-flat-button color="primary" (click)="saveInfraestructuraAplicacion()">
+      <mat-icon>save</mat-icon>&nbsp;Guardar
+      </button>&nbsp;
+      <button mat-flat-button color="primary" (click)="cleanPanel()">
+      <mat-icon>insert_drive_file</mat-icon>&nbsp;Nuevo
+      </button>&nbsp;
+      <button mat-flat-button color="primary" (click)="disablePanel()">
+      <mat-icon>close</mat-icon>&nbsp;Cerrar
+      </button>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
+<div *ngIf="tableActive">
+  <button mat-flat-button color="primary" (click)="enablePanel()" *ngIf="!viewMode&&submitted">
+    <mat-icon>add</mat-icon>&nbsp;A&ntilde;adir
+  </button>
+  <br>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="ico">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon  color="primary" >navigate_next</mat-icon>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="id" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> Id </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="ambienteInf" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> ambienteInf </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.ambienteInf}} </td>
+    </ng-container>
+    <ng-container matColumnDef="nombreDet">
+      <th mat-header-cell *matHeaderCellDef> Ambiente </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreDet}} </td>
+    </ng-container>    
+    <ng-container matColumnDef="rutaInf">
+      <th mat-header-cell *matHeaderCellDef> Ruta Aplicacion </th>
+      <td mat-cell *matCellDef="let element"> {{element.rutaInf}} </td>
+    </ng-container>
+    <ng-container matColumnDef="detalleInf">
+      <th mat-header-cell *matHeaderCellDef> Detalle </th>
+      <td mat-cell *matCellDef="let element"> {{element.detalleInf}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idSer" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> Servidor </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.idSer}} </td>
+    </ng-container>
+    <ng-container matColumnDef="nombreSer">
+      <th mat-header-cell *matHeaderCellDef> Servidor </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreSer}} </td>
+    </ng-container>
+    <ng-container matColumnDef="ipSer" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> IP Servidor </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.ipSer}} </td>
+    </ng-container>
+    <ng-container matColumnDef="detalleSer" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> Tipo Servidor </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.detalleSer}} </td>
+    </ng-container>
+    <ng-container matColumnDef="ssoSer" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> SO Servidor </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.ssoSer}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idApl" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> Id Aplicacion </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.idApl}} </td>
+    </ng-container>
+    <ng-container matColumnDef="nombreApl" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> Aplicacion </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.nombreApl}} </td>
+    </ng-container>
+    <ng-container matColumnDef="getEdit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" *ngIf="!viewMode" matTooltip="Editar item" (click)="editInfraestructuraAplicacion(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;"  
+		(mouseover)="row.hovered = true" (mouseout)="row.hovered = false" (click)="openDialog(row)"></tr>
+  </table>
+</div>

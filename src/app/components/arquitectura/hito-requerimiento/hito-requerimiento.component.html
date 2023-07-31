@@ -1,0 +1,120 @@
+<div>
+	<mat-card class="banner">
+		<br><br>
+		<br><br>
+		<mat-card-title>HITOS REQUERIMIENTOS</mat-card-title>
+		<mat-card-content>
+			<br><br>
+			<br><br>
+			<br><br>
+		  <p>
+		  Descripci&oacute;n de cada etapa de un requerimiento.
+		</p>
+		</mat-card-content>
+		<mat-card-footer>
+		</mat-card-footer>
+	  </mat-card>
+	  <br>
+	<button mat-flat-button color="primary" (click)="enablePanel()" *ngIf="submitted">
+		<mat-icon>add</mat-icon>&nbsp;A&ntilde;adir
+	</button>
+	<br>
+	<br>
+	<div *ngIf="!submitted">
+	  <button mat-flat-button color="primary" (click)="disablePanel()">
+		<mat-icon>home</mat-icon>&nbsp;Inicio
+	  </button>
+	  <h1> {{title}}</h1>
+	  <mat-tab-group>
+		<mat-tab label="Informacion">
+		  <div>
+			<h3>Datos Hito Requerimiento</h3>
+			<div class="form-group" hidden="true">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Id</mat-label>
+				<input id="id" disabled="true" matInput [(ngModel)]="currentHitoRequerimiento.id">
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Etapa</mat-label>
+				<mat-select id="tipoApl" value="{{currentHitoRequerimiento.etapaHit}}" [(ngModel)]="currentHitoRequerimiento.etapaHit">
+				  <mat-option *ngFor="let value of detalleCatalogoEtapa " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Concideraciones</mat-label>
+				<textarea id="concideracionHit" rows="10" wrap="hard" matInput [(ngModel)]="currentHitoRequerimiento.concideracionHit"></textarea>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Metodolog&iacute;a</mat-label>
+				<mat-select id="metodologiaHit" value="{{currentHitoRequerimiento.metodologiaHit}}" [(ngModel)]="currentHitoRequerimiento.metodologiaHit">
+				  <mat-option *ngFor="let value of detalleCatalogoMetodo " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <button mat-flat-button color="primary" (click)="saveHitoRequerimiento()">
+				<mat-icon>save</mat-icon>&nbsp;Guardar
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="cleanPanel()">
+				<mat-icon>insert_drive_file</mat-icon>&nbsp;Nuevo
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="disablePanel()">
+				<mat-icon>close</mat-icon>&nbsp;Cerrar
+			  </button>
+			  <br>
+			  <br>
+			</div>
+		  </div>
+		</mat-tab>
+		<mat-tab label="Tareas" *ngIf="tabActive">
+			<h5 class="card-header">Tareas</h5>
+			<div>
+			  <app-tarea-requerimiento [viewMode]="false" [currentHito]="currentHitoRequerimiento"></app-tarea-requerimiento>
+			</div>
+		</mat-tab>
+	  </mat-tab-group>
+	</div>
+	<div *ngIf="tableActive">
+	  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+		<ng-container matColumnDef="id" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> Id </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.id}} </td>
+		</ng-container>
+		<ng-container matColumnDef="etapaHit">
+		  <th mat-header-cell *matHeaderCellDef> Etapa </th>
+		  <td mat-cell *matCellDef="let element">
+			<select value="{{element.etapaHit}}" class="tabla-sf" disabled="true" [(ngModel)]="element.etapaHit">
+			  <option *ngFor="let value of detalleCatalogoEtapa " value="{{value.id}}"> {{ value.nombreDet }}</option>
+			</select>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="concideracionHit">
+		  <th mat-header-cell *matHeaderCellDef> Concideraciones </th>
+		  <td mat-cell *matCellDef="let element"> {{element.concideracionHit}} </td>
+		</ng-container>
+		<ng-container matColumnDef="metodologiaHit">
+		  <th mat-header-cell *matHeaderCellDef> Metodolog&iacute;a </th>
+		  <td mat-cell *matCellDef="let element">
+			<select value="{{element.metodologiaHit}}" class="tabla-sf" disabled="true" [(ngModel)]="element.metodologiaHit">
+			  <option *ngFor="let value of detalleCatalogoMetodo " value="{{value.id}}"> {{ value.nombreDet }}</option>
+			</select>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="getEdit">
+		  <th mat-header-cell *matHeaderCellDef></th>
+		  <td mat-cell *matCellDef="let element">
+			<button mat-icon-button color="primary" matTooltip="Editar item"  (click)="editHitoRequerimiento(element)">
+			  <mat-icon>edit</mat-icon>
+			</button>
+		  </td>
+		</ng-container>
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+	  </table>
+	</div>

@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: ${APP_NAME}
+  namespace: ${OPENSHIFT_NAMESPACE}-${AMBIENTE}
+data:
+  orquesta.pagos.productos.tarjetas: PAN
+  orquesta.redirect.uri: 'https://api-dev.dinersclub.tech.ec/redirected'
+  orquesta.pagos.productos.trasferencias: BBAN
+  flag.healthcheck: 'false'

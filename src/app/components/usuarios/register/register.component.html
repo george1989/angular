@@ -1,0 +1,47 @@
+<h2>Cambio de contrase&ntilde;a</h2>
+<form class="custom-form">
+<div class="container" >
+    <br><br>
+    <img
+    id="profile-img"
+    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+    class="profile-img-card"
+  />
+    <div class="form-group" >
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Usuario</mat-label>
+        <input id="usuario" matInput [(ngModel)]="user.username" disabled="true">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Email</mat-label>
+        <input id="correo" matInput [(ngModel)]="user.email" disabled="true">
+      </mat-form-field>
+    </div>
+    <div class="form-group" >
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Contrase&ntilde;a</mat-label>
+        <input matInput id="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password" required minlength="6">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="form-group" >
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Confirmar Contrase&ntilde;a</mat-label>
+        <input matInput id="passwordCon" [type]="hide ? 'password' : 'text'" [(ngModel)]="passwordCon" required minlength="6">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-group">
+      <button mat-mini-fab color="primary"  (click)=updateUser()>
+        <mat-icon>save</mat-icon>
+      </button>
+      </div>
+  </div>
+</form>

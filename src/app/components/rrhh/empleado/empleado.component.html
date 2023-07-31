@@ -1,0 +1,112 @@
+<div>
+<h2 class="title-modelo">EMPLEADOS</h2>
+<div>
+  <button mat-mini-fab color="primary"  (click)="enablePanel()" *ngIf="submitted">
+    <mat-icon>add</mat-icon>
+  </button>
+  <br>
+  <br>
+  <div *ngIf="!submitted">
+      <h3 class="display-3">Datos servidor</h3>
+      <div class="form-group" hidden="true">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Id</mat-label>
+          <input id="id" disabled="true" matInput [(ngModel)]="newEmpleado.id">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Nombre</mat-label>
+          <input id="nombreEmp" matInput [(ngModel)]="newEmpleado.nombreEmp">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Fecha Ingreso</mat-label>
+          <input id="ingresoEmp" matInput [(ngModel)]="newEmpleado.ingresoEmp">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Fecha Nacimiento</mat-label>
+          <input id="nacimientoEmp" matInput [(ngModel)]="newEmpleado.nacimientoEmp">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Direcci&oacute;n</mat-label>
+          <input id="direccionEmp" matInput [(ngModel)]="newEmpleado.direccionEmp">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Departamento</mat-label>
+        <mat-select id="departamentoEmp" value="{{newEmpleado.departamentoEmp}}" [(ngModel)]="newEmpleado.departamentoEmp">
+          <mat-option *ngFor="let value of detalleCatalogoDep " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+        </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <button mat-mini-fab color="primary"  (click)="saveEmpleado()">
+          <mat-icon>save</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary"  (click)="cleanPanel()">
+          <mat-icon>insert_drive_file</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary"  (click)="disablePanel()">
+          <mat-icon>close</mat-icon>
+        </button>
+        <br>
+        <br>
+      </div>
+
+  </div>
+  </div>
+  <div *ngIf="tableActive">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="nombreEmp">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreEmp}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="ingresoEmp">
+      <th mat-header-cell *matHeaderCellDef> Fecha Ingreso </th>
+      <td mat-cell *matCellDef="let element"> {{element.ingresoEmp}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="nacimientoEmp">
+      <th mat-header-cell *matHeaderCellDef> Fecha Nacimiento</th>
+      <td mat-cell *matCellDef="let element"> {{element.nacimientoEmp}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="departamentoEmp">
+      <th mat-header-cell *matHeaderCellDef> Departamento</th>
+      <td mat-cell *matCellDef="let element">
+        <select value="{{element.departamentoEmp}}" [(ngModel)]="element.departamentoEmp" class="tabla-sf" disabled="true">
+          <option *ngFor="let value of detalleCatalogoDep " value="{{value.id}}"> {{ value.nombreDet }}</option>
+        </select>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="getEdit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" matTooltip="Editar item"  (click)="editEmpleado(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"     
+    [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"
+    (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
+</tr>
+  </table>
+  </div>
+</div>

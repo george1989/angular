@@ -1,0 +1,85 @@
+<div>
+  <button mat-mini-fab color="primary"  (click)="enablePanel()" *ngIf="!viewMode&&submitted">
+    <mat-icon>add</mat-icon>
+  </button>
+  <br>
+  <br>
+  <div *ngIf="!submitted">
+    <h3>Detalles</h3>
+    <div class="form-group" hidden="true">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Id</mat-label>
+        <input id="id" disabled="true" matInput [(ngModel)]="newTareaRequerimiento.id">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Tarea</mat-label>
+        <textarea id="tareaTar" rows="5" wrap="hard" matInput [(ngModel)]="newTareaRequerimiento.tareaTar"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Integrantes</mat-label>
+        <mat-select id="tipoLog" value="{{newTareaRequerimiento.integranteTar}}" [(ngModel)]="newTareaRequerimiento.integranteTar">
+          <mat-option *ngFor="let value of detalleCatalogoIntegrante " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group" hidden="true">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>idHit</mat-label>
+        <input id="idHit" matInput [(ngModel)]="newTareaRequerimiento.idHit">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <button mat-mini-fab color="primary"  (click)="saveTareaRequerimiento()">
+        <mat-icon>save</mat-icon>
+      </button>
+      <button mat-mini-fab color="primary"  (click)="cleanPanel()">
+        <mat-icon>insert_drive_file</mat-icon>
+      </button>
+      <button mat-mini-fab color="primary"  (click)="disablePanel()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
+<div *ngIf="tableActive">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> Id </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="integranteTar">
+      <th mat-header-cell *matHeaderCellDef> Integrantes </th>
+      <td mat-cell *matCellDef="let element">
+        <select value="{{element.integranteTar}}" class="tabla-sf" disabled="true" [(ngModel)]="element.integranteTar">
+          <option *ngFor="let value of detalleCatalogoIntegrante " value="{{value.id}}"> {{ value.nombreDet }}</option>
+        </select>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="idHit" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> idHit </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.idHit}} </td>
+    </ng-container>
+    <ng-container matColumnDef="tareaTar">
+      <th mat-header-cell *matHeaderCellDef> Tarea </th>
+      <td mat-cell *matCellDef="let element">
+        <textarea disabled="true" class="text-area" rows="20" wrap="hard">{{element.tareaTar}} </textarea>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="getEdit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" *ngIf="!viewMode" matTooltip="Editar item"  (click)="editTareaRequerimiento(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+  </table>
+</div>

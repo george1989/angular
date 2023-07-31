@@ -1,0 +1,113 @@
+<h4>{{nomEstandar}}</h4> 
+      <div class="container" *ngIf="!submitted">
+        <div class="form-group" hidden="true">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Id</mat-label>
+            <input id="id" disabled="true" matInput [(ngModel)]="newEstandarLogica.id">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="fill" class="input-modelo">
+              <mat-label>Componente</mat-label>
+              <input id="componenteElo" matInput [(ngModel)]="newEstandarLogica.componenteElo">
+            </mat-form-field>
+          </div>
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Descripci&oacute;n</mat-label>
+            <input id="descripcionElo" matInput [(ngModel)]="newEstandarLogica.descripcionElo">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Expresi&oacute;n 1</mat-label>
+            <input id="expresionUnoElo" matInput [(ngModel)]="newEstandarLogica.expresionUnoElo">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Expresi&oacute;n 2</mat-label>
+            <input id="expresionDosElo" matInput [(ngModel)]="newEstandarLogica.expresionDosElo">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Expresi&oacute;n 3</mat-label>
+            <input id="expresionTresElo" matInput [(ngModel)]="newEstandarLogica.expresionTresElo">
+          </mat-form-field>
+        </div>
+        <div class="form-group" hidden="true">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>idEst</mat-label>
+            <input id="idEst" matInput [(ngModel)]="newEstandarLogica.idEst">
+          </mat-form-field>
+        </div>
+        
+			<div class="form-group">
+				<button mat-flat-button color="primary" (click)="saveEstandarLogica()">
+				<mat-icon>save</mat-icon>&nbsp;Guardar
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="cleanPanel()">
+				<mat-icon>insert_drive_file</mat-icon>&nbsp;Nuevo
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="disablePanel()">
+				<mat-icon>close</mat-icon>&nbsp;Cerrar
+			  </button>
+			  <br>
+			  <br>  
+			</div>
+    </div>
+
+    
+
+
+
+<div *ngIf="tableActive">
+  <button mat-flat-button color="primary" (click)="enablePanel()" *ngIf="submitted">
+    <mat-icon>add</mat-icon>&nbsp;A&ntilde;adir
+  </button>
+  <br>
+  <br>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="id"  hidden="true">
+    <th mat-header-cell *matHeaderCellDef  hidden="true"> Id </th>
+    <td mat-cell *matCellDef="let element" hidden="true"> {{element.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="idEst" hidden="true">
+    <th mat-header-cell *matHeaderCellDef hidden="true"> idEst </th>
+    <td mat-cell *matCellDef="let element" hidden="true"> {{element.idEst}} </td>
+  </ng-container>
+  <ng-container matColumnDef="componenteElo" >
+    <th mat-header-cell *matHeaderCellDef > Tipo</th>
+    <td mat-cell *matCellDef="let element" >
+      {{element.componenteElo}}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="descripcionElo">
+    <th mat-header-cell *matHeaderCellDef> Descripci&oacute;n </th>
+    <td mat-cell *matCellDef="let element"> {{element.descripcionElo}} </td>
+  </ng-container>
+  <ng-container matColumnDef="expresionUnoElo">
+    <th mat-header-cell *matHeaderCellDef> Expresion Uno </th>
+    <td mat-cell *matCellDef="let element"> {{element.expresionUnoElo}} </td>
+  </ng-container>
+  <ng-container matColumnDef="expresionDosElo">
+    <th mat-header-cell *matHeaderCellDef> Expresion Dos </th>
+    <td mat-cell *matCellDef="let element"> {{element.expresionDosElo}} </td>
+  </ng-container>
+  <ng-container matColumnDef="expresionTresElo">
+    <th mat-header-cell *matHeaderCellDef> Expresion Tres </th>
+    <td mat-cell *matCellDef="let element"> {{element.expresionTresElo}} </td>
+  </ng-container>
+  <ng-container matColumnDef="getEdit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" matTooltip="Editar item"  (click)="editEstandarLogica(element)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+</table>
+</div>

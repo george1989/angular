@@ -1,0 +1,69 @@
+table{
+    width: 100%;
+   }
+   .banner{
+     background-image: url("https://gitlab.dce.ec/arquitectura/recursos/diagramas/-/raw/main/banner.png");
+     background-size: 100%;
+     background-position: center top;
+     color: white;
+   }
+   .input-modelo{
+    width: 100%;
+   } 
+   .mat-header-cell{
+    font-size: small;
+    font-weight: bold;
+    text-align: left;
+   }
+   .mat-cell{
+    font-size: x-small;
+    padding: 8px 8px 8px 8px;
+   }
+   .tabla-sf{
+    font-size: x-small;
+    background-color: inherit;
+    border-width: 0ch;
+    width: 200px;
+    text-align: justify;
+    appearance:none; 
+   }
+   .mat-column-idApl{
+     word-wrap: break-word !important;
+     white-space: unset !important;
+     flex: 0 0 10% !important;
+     width: 30% !important;
+   }
+   .mat-column-generalDap{
+     word-wrap: break-word !important;
+     white-space: unset !important;
+     flex: 0 0 10% !important;
+     width: 65% !important;
+   }
+  .info-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .info-container mat-form-field {
+    width: 220px;
+  }
+  
+  .info-container form {
+    margin-bottom: 20px;
+  }
+  
+  .info-container form > * {
+    margin: 12px 0;
+  }
+  
+  .info-container .mat-radio-button {
+    margin: 0 12px;
+  }
+  
+  .info-form-fields {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .mat-row:hover  > .mat-cell {
+    font-weight:  bolder;
+  }

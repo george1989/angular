@@ -1,0 +1,258 @@
+<section class="bar-section">
+	<mat-progress-bar
+		class="bar-margin"
+		[color]="color"
+		[mode]="mode"
+		[value]="value"
+		[bufferValue]="bufferValue">
+	</mat-progress-bar>
+  </section>
+  <div>
+	<div *ngIf="!submitted">
+		<mat-card class="banner">
+			<br><br>
+			<br><br>
+			<mat-card-title>APLICACI&Oacute;N</mat-card-title>
+		  </mat-card>
+		  <br>
+		<button mat-flat-button color="primary" (click)="disablePanel()">
+		<mat-icon>home</mat-icon>&nbsp;Inicio
+	  </button>
+	  <h4> {{title}}</h4>
+	  <mat-tab-group>
+		<mat-tab label="Informacion">
+		  <div>
+			<div class="form-group" hidden="true">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Id</mat-label>
+				<input id="id" disabled="true" matInput [(ngModel)]="currentAplicacion.id">
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Nombre</mat-label>
+				<input id="nombreApl" matInput [(ngModel)]="currentAplicacion.nombreApl">
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Descripcion</mat-label>
+				<textarea id="descripcionApl" rows="7" wrap="hard" matInput [(ngModel)]="currentAplicacion.descripcionApl"></textarea>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Tipo</mat-label>
+				<mat-select id="tipoApl" value="{{currentAplicacion.tipoApl}}" [(ngModel)]="currentAplicacion.tipoApl">
+				  <mat-option *ngFor="let value of detalleCatalogoTipo " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Versi&oacute;n</mat-label>
+				<input id="versionApl" matInput [(ngModel)]="currentAplicacion.versionApl">
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Estado</mat-label>
+				<mat-select id="estadoApl" value="{{currentAplicacion.estadoApl}}" [(ngModel)]="currentAplicacion.estadoApl">
+				  <mat-option *ngFor="let value of detalleCatalogoEstado " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Responsable</mat-label>
+				<input id="versiresponsableAplonApl" matInput [(ngModel)]="currentAplicacion.responsableApl">
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Criticidad</mat-label>
+				<mat-select id="criticidadApl" value="{{currentAplicacion.criticidadApl}}" [(ngModel)]="currentAplicacion.criticidadApl">
+				  <mat-option *ngFor="let value of detalleCatalogoCrit " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Desarrolla</mat-label>
+				<mat-select id="desarrolloApl" value="{{currentAplicacion.desarrolloApl}}" [(ngModel)]="currentAplicacion.desarrolloApl">
+				  <mat-option *ngFor="let value of detalleCatalogoDesa " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+				</mat-select>
+			  </mat-form-field>
+			</div>
+			<div class="form-group" *ngIf="!modeEdit">
+				<button mat-flat-button color="primary" (click)="saveAplicacion()">
+				<mat-icon>save</mat-icon>&nbsp;Guardar
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="cleanPanel()">
+				<mat-icon>insert_drive_file</mat-icon>&nbsp;Nuevo
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="disablePanel()">
+				<mat-icon>close</mat-icon>&nbsp;Cerrar
+			  </button>
+			  <br>
+			  <br>
+			</div>
+		  </div>
+		</mat-tab>
+		<mat-tab label="Infraestrucctura" *ngIf="tabActive">
+		  <div class="card">
+			<h5 class="card-header">Infraestructura</h5>
+			<div class="card-body">
+			  <app-infraestructura-aplicacion [viewMode]="modeEdit" [currentAplicacion]="currentAplicacion"></app-infraestructura-aplicacion>
+			</div>
+		  </div>
+		</mat-tab>
+		<mat-tab label="Componentes" *ngIf="tabActive">
+		  <div class="card">
+			<h5 class="card-header">Componentes</h5>
+			<div class="card-body">
+			  <app-componente-aplicacion [viewMode]="modeEdit" [currentAplicacion]="currentAplicacion"></app-componente-aplicacion>
+			</div>
+		  </div>
+		</mat-tab>
+		<mat-tab label="Tecnologias" *ngIf="tabActive">
+		  <div class="card">
+			<h5 class="card-header">Tecnolog&iacute;as</h5>
+			<div class="card-body">
+			  <app-tecnologia-aplicacion [viewMode]="modeEdit" [currentAplicacion]="currentAplicacion"></app-tecnologia-aplicacion>
+			</div>
+		  </div>
+		</mat-tab>
+		<mat-tab label="Logs" *ngIf="tabActive">
+		  <div class="card">
+			<h5 class="card-header">Logs</h5>
+			<div class="card-body">
+			  <app-logs [viewMode]="modeEdit" [currentAplicacion]="currentAplicacion"></app-logs>
+			</div>
+		  </div>
+		</mat-tab>
+		<mat-tab label="Detalle" *ngIf="tabActive">
+		  <div class="card">
+			<h5 class="card-header">Detalle</h5>
+			<div class="card-body">
+			  <app-aplicacion-details [viewMode]="modeEdit" [currentAplicacion]="currentAplicacion"></app-aplicacion-details>
+			</div>
+		  </div>
+		</mat-tab>
+		<mat-tab label="Integraci&oacute;n" *ngIf="tabActive">
+		  <div class="card">
+			<h5 class="card-header">Integraci&oacute;n</h5>
+			<div class="card-body">
+			  <app-integracion-aplicacion [viewMode]="modeEdit" [currentAplicacion]="currentAplicacion"></app-integracion-aplicacion>
+			</div>
+		  </div>
+		</mat-tab>
+		<mat-tab label="Recursos" *ngIf="tabActive">
+		  <div class="card">
+			<h5 class="card-header">Recursos</h5>
+			<div class="card-body">
+			  <app-recurso-aplicacion [viewMode]="modeEdit" [currentAplicacion]="currentAplicacion"></app-recurso-aplicacion>
+			</div>
+		  </div>
+		</mat-tab>
+	  </mat-tab-group>
+	</div>
+	<div *ngIf="tableActive">
+		<mat-card class="banner">
+			<br><br>
+			<br><br>
+			<mat-card-title>APLICACI&Oacute;N</mat-card-title>
+			<mat-card-content>
+				<br><br>
+				<br><br>
+				<br><br>
+			  <p>
+			  Listado de aplicaciones.
+			</p>
+			</mat-card-content>
+			<mat-card-footer>
+			</mat-card-footer>
+		  </mat-card>
+		  <br>
+
+		  <button mat-flat-button color="primary" (click)="enablePanel()" *ngIf="submitted">
+			<mat-icon>add</mat-icon>&nbsp;A&ntilde;adir
+		  </button>
+		  <br>
+		  <br>
+		<div class="col-md-8">
+			<div class="input-group mb-3">
+			  <input type="text" class="form-control" placeholder="Buscar aplicaci&oacute;n" [(ngModel)]="title" (keyup)="searchTitle()"/>
+			  <div class="input-group-append">
+				<button class="btn btn-outline-secondary" (click)="searchTitle()"> Buscar </button>
+			  </div>
+			</div>
+		  </div>
+	  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+		<ng-container matColumnDef="id" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> Id </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.id}} </td>
+		</ng-container>
+		<ng-container matColumnDef="nombreApl">
+		  <th mat-header-cell *matHeaderCellDef> Nombre </th>
+		  <td mat-cell *matCellDef="let element"> {{element.nombreApl}} </td>
+		</ng-container>
+		<ng-container matColumnDef="descripcionApl">
+		  <th mat-header-cell *matHeaderCellDef> Descripci&oacute;n </th>
+		  <td mat-cell *matCellDef="let element"> {{element.descripcionApl}} </td>
+		</ng-container>
+		<ng-container matColumnDef="tipoApl">
+		  <th mat-header-cell *matHeaderCellDef> Tipo </th>
+		  <td mat-cell *matCellDef="let element">
+			<select value="{{element.tipoApl}}" class="tabla-sf" disabled="true" [(ngModel)]="element.tipoApl">
+			  <option *ngFor="let value of detalleCatalogoTipo " value="{{value.id}}"> {{ value.nombreDet }}</option>
+			</select>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="versionApl" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> Versi&oacute;n </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.versionApl}} </td>
+		</ng-container>
+		<ng-container matColumnDef="estadoApl">
+		  <th mat-header-cell *matHeaderCellDef> Estado </th>
+		  <td mat-cell *matCellDef="let element">
+			<select value="{{element.estadoApl}}" class="tabla-sf" disabled="true" [(ngModel)]="element.estadoApl">
+			  <option *ngFor="let value of detalleCatalogoEstado " value="{{value.id}}"> {{ value.nombreDet }}</option>
+			</select>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="responsableApl" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> Responsable </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.responsableApl}} </td>
+		</ng-container>
+		<ng-container matColumnDef="criticidadApl">
+		  <th mat-header-cell *matHeaderCellDef> Criticidad </th>
+		  <td mat-cell *matCellDef="let element">
+			<select value="{{element.criticidadApl}}" class="tabla-sf" disabled="true" [(ngModel)]="element.criticidadApl">
+			  <option *ngFor="let value of detalleCatalogoCrit " value="{{value.id}}"> {{ value.nombreDet }}</option>
+			</select>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="desarrolloApl" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> Desarrollado </th>
+		  <td mat-cell *matCellDef="let element" hidden="true">
+			<select class="tabla-sf" value="{{element.desarrolloApl}}" disabled="true" [(ngModel)]="element.desarrolloApl">
+			  <option *ngFor="let value of detalleCatalogoDesa " value="{{value.id}}"> {{ value.nombreDet }}</option>
+			</select>
+		  </td>
+		</ng-container>
+		<ng-container matColumnDef="getEdit" >
+		  <th mat-header-cell *matHeaderCellDef></th>
+		  <td mat-cell *matCellDef="let element">
+			<button mat-icon-button color="primary" matTooltip="Editar item"
+			(click)="editAplicacion(element)">
+			  <mat-icon>edit</mat-icon>
+			</button>
+		  </td>
+		</ng-container>
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+		[ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" 
+		(mouseover)="row.hovered = true" (mouseout)="row.hovered = false" (click)="viewAplicacion(row)"></tr>
+	  </table>
+	</div>

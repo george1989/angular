@@ -1,0 +1,229 @@
+<section class="bar-section">
+	<mat-progress-bar
+		class="bar-margin"
+		[color]="color"
+		[mode]="mode"
+		[value]="value"
+		[bufferValue]="bufferValue">
+	</mat-progress-bar>
+  </section>
+  <div>
+	<div *ngIf="!submitted" id="print">
+		<mat-card class="banner">
+			<br><br>
+			<br><br>
+			<mat-card-title>ECR REPORT</mat-card-title>
+			<mat-card-footer>
+			</mat-card-footer>
+		</mat-card>
+			<br>
+	  <button mat-fab color="primary" (click)="disablePanel()">
+		<mat-icon>home</mat-icon>
+	  </button>
+	  <h1> {{filter.repositoryName}}</h1>
+		  <div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Tag</mat-label>
+				<input id="imageTag" matInput [(ngModel)]="imageTag" disabled="true">
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>ID Imágen</mat-label>
+				<input id="imageDigest" matInput [(ngModel)]="filter.imageDigest" disabled="true">
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo">
+				<mat-label>Estado</mat-label>
+				<input id="imageDigest" matInput [(ngModel)]="imageStatus" disabled="true">
+			  </mat-form-field>
+			</div>
+			<div class="form-group">
+			  <mat-form-field appearance="fill" class="input-modelo" >
+				<mat-label>Fecha</mat-label>
+				<input id="imageScanCompletedAt" matInput [(ngModel)]="scanFind.imageScanCompletedAt" disabled="true" >
+			  </mat-form-field>
+			</div>
+
+			Información general
+
+			<div class="info-container">
+				<form >
+			  
+				  <div class="info-form-fields">
+					
+					<mat-form-field >
+						<mat-label>CRITICAL</mat-label>
+						<input id="CRITICAL" matInput value="{{dataFind.CRITICAL}}" style="background-color: red; color:darkblue; text-align: center;" disabled="true">
+					  </mat-form-field>
+					<mat-form-field>
+						<mat-label>HIGH</mat-label>
+						<input id="HIGH" matInput value="{{dataFind.HIGH}}" style="background-color: coral; color: darkblue; text-align: center;" disabled="true">
+					  </mat-form-field>
+					<mat-form-field >
+						<mat-label>MEDIUM</mat-label>
+						<input id="MEDIUM" matInput value="{{dataFind.MEDIUM}}" style="background-color:orange; color: darkblue; text-align: center;" disabled="true">
+					  </mat-form-field>
+					<mat-form-field >
+						<mat-label>LOW</mat-label>
+						<input id="LOW" matInput value="{{dataFind.LOW}}" style="background-color: yellow; color: darkblue; text-align: center;" disabled="true">
+					  </mat-form-field>
+					<mat-form-field >
+						<mat-label>UNTRIAGED</mat-label>
+						<input id="UNTRIAGED" matInput value="{{dataFind.UNTRIAGED}}" style="background-color:wheat; color: darkblue; text-align: center;" disabled="true">
+					  </mat-form-field>
+					  <mat-form-field >
+						  <mat-label>UNDEFINED</mat-label>
+						  <input id="UNDEFINED" matInput value="{{dataFind.UNDEFINED}}" style="background-color:antiquewhite; color: darkblue; text-align: center;" disabled="true">
+						</mat-form-field>
+					  
+				  </div>
+				</form>
+			  </div>
+
+
+			  Vulnerabilidades ( {{totalVulnera}} )	
+
+			<div>
+			<table mat-table [dataSource]="dataSourceReportVulnera" class="mat-elevation-z8" >		
+				<ng-container matColumnDef="ico">
+					<th mat-header-cell *matHeaderCellDef></th>
+					<td mat-cell *matCellDef="let element">
+						<mat-icon  color="primary" >navigate_next</mat-icon>
+					</td>
+				</ng-container>
+				
+				<ng-container matColumnDef="nombre" >
+					<th mat-header-cell *matHeaderCellDef > Nombre </th>
+					<td mat-cell *matCellDef="let element" >						
+						<a href="{{element.referencia}}" target="_blank">{{element.nombre}}</a>
+					</td>
+				</ng-container>
+				<ng-container matColumnDef="paquete" >
+					<th mat-header-cell *matHeaderCellDef > Paquete </th>
+					<td mat-cell *matCellDef="let element" > {{element.paquete}} </td>
+				</ng-container>
+				<ng-container matColumnDef="gravedad" >
+					<th mat-header-cell *matHeaderCellDef > Gravedad </th>
+					<td mat-cell *matCellDef="let element" > {{element.gravedad}} </td>
+				</ng-container>
+				<ng-container matColumnDef="descripcion" >
+					<th mat-header-cell *matHeaderCellDef > Descripción </th>
+					<td mat-cell *matCellDef="let element" > {{element.descripcion}} </td>
+				</ng-container>
+				<ng-container matColumnDef="estado" >
+					<th mat-header-cell *matHeaderCellDef > Estado </th>
+					<td mat-cell *matCellDef="let element" > {{element.estado}} </td>
+				</ng-container>
+				<ng-container matColumnDef="referencia" hidden="true">
+					<th mat-header-cell *matHeaderCellDef hidden="true"> referencia </th>
+					<td mat-cell *matCellDef="let element" hidden="true">{{element.referencia}}</td>
+				</ng-container>
+				<ng-container matColumnDef="correcion" >
+					<th mat-header-cell *matHeaderCellDef > Correción </th>
+					<td mat-cell *matCellDef="let element" > {{element.correcion}} </td>
+				</ng-container>
+
+				<tr mat-header-row *matHeaderRowDef="displayedColumnsVulnera"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumnsVulnera;"  
+				(mouseover)="row.hovered = true" (mouseout)="row.hovered = false" ></tr>
+			  </table>
+			</div>
+			<br>
+			<div class="form-group">
+				<button mat-flat-button color="primary" (click)="disablePanel()">
+				  <mat-icon>close</mat-icon>&nbsp;Cerrar
+				</button>
+			  <br>
+			  <br>  
+			</div>
+		  </div>
+	</div>
+	<div *ngIf="tableActive">	
+		<mat-card class="banner">
+			<br><br>
+			<br><br>
+			<mat-card-title>ECR REPORT</mat-card-title>
+			<mat-card-content>
+			  <br><br>
+			  <br><br>
+			  <br><br>
+			  <p>
+			  Reporte Vulnerabilidades.
+			</p>
+			</mat-card-content>
+			<mat-card-footer>
+			</mat-card-footer>
+		</mat-card>
+			<br>	
+	  <div >
+            <div class="col-md-8">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Buscar Repositorio" [(ngModel)]="repositoryName" (keyup.enter)="getECR()"/>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" (click)="getECR()"> Buscar </button>
+                  </div>
+                </div>
+              </div>
+	  </div>
+	  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 " >		
+		<ng-container matColumnDef="ico">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let element">
+				<mat-icon  color="primary" >navigate_next</mat-icon>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="registryId" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> registryId </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.registryId}} </td>
+		</ng-container>
+		<ng-container matColumnDef="repositoryName">
+		  <th mat-header-cell *matHeaderCellDef> Nombre</th>
+		  <td mat-cell *matCellDef="let element"> {{element.repositoryName}} </td>
+		</ng-container>
+		<ng-container matColumnDef="imageDigest" >
+		  <th mat-header-cell *matHeaderCellDef > ID</th>
+		  <td mat-cell *matCellDef="let element" > {{element.imageDigest}} </td>
+		</ng-container>
+		<ng-container matColumnDef="imageTags" >
+		  <th mat-header-cell *matHeaderCellDef > Tag </th>
+		  <td mat-cell *matCellDef="let element" > {{element.imageTags}} </td>
+		</ng-container>
+		<ng-container matColumnDef="imageSizeInBytes" >
+		  <th mat-header-cell *matHeaderCellDef > Tamaño </th>
+		  <td mat-cell *matCellDef="let element" > {{element.imageSizeInBytes}} Bytes</td>
+		</ng-container>
+		<ng-container matColumnDef="imagePushedAt" >
+		  <th mat-header-cell *matHeaderCellDef > Fecha </th>
+		  <td mat-cell *matCellDef="let element" > {{element.imagePushedAt}} </td>
+		</ng-container>
+		<ng-container matColumnDef="imageScanStatus" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> Estado </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.imageScanStatus}} </td>
+		</ng-container>
+		<ng-container matColumnDef="imageScanFindingsSummary" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> imageScanFindingsSummary </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.imageScanFindingsSummary}} </td>
+		</ng-container>
+		<ng-container matColumnDef="imageManifestMediaType" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> imageManifestMediaType </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.imageManifestMediaType}} </td>
+		</ng-container>
+		<ng-container matColumnDef="artifactMediaType" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> artifactMediaType </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.artifactMediaType}} </td>
+		</ng-container> 
+		<ng-container matColumnDef="lastRecordedPullTime" hidden="true">
+		  <th mat-header-cell *matHeaderCellDef hidden="true"> lastRecordedPullTime </th>
+		  <td mat-cell *matCellDef="let element" hidden="true"> {{element.lastRecordedPullTime}} </td>
+		</ng-container> 
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;"  
+		(mouseover)="row.hovered = true" (mouseout)="row.hovered = false" (click)="selectAnalisis(row)"></tr>
+	  </table>
+	  <br>
+	</div>
+  </div>

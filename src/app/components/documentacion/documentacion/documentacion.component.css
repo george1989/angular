@@ -1,0 +1,67 @@
+table{
+    width: 100%;
+   }
+   .input-modelo{
+    width: 100%;
+   } 
+   .banner{
+     background-image: url("https://gitlab.dce.ec/arquitectura/recursos/diagramas/-/raw/main/banner.png");
+     background-size: 100%;
+     background-position: center top;
+     color: white;
+   }
+   .title-modelo{
+    width: 100%;
+    text-align: center;
+   } 
+   .mat-header-cell{
+    font-size: small;
+    font-weight: bold;
+    text-align: left;
+   }   
+   .mat-cell{
+    font-size: x-small;
+    padding: 2px 2px 2px 2px;
+   }
+   .tabla-sf{
+    font-size: x-small;
+    background-color: inherit;
+    border-width: 0ch;
+    width: 100%;
+    appearance:none; 
+   }
+    .mat-row.hovered {
+        background: #eee;
+    }
+    
+    .mat-row.highlighted {
+      background: #999;
+    }
+    
+
+
+    tr.detalle-tabla-detail-row {
+      height: 0;
+    }
+    .detalle-tabla-element-row td {
+      border-bottom-width: 0;
+    }    
+    .detalle-tabla-element-detail {
+      overflow: hidden;
+      display: flex;
+      vertical-align: text-top;
+    }      
+    .detalle-tabla-element-description {
+      vertical-align: text-top;
+      font-size: x-small;
+      padding: 2px 2px 2px 2px;
+    }  
+    .detalle-tabla-element-description-title {
+      vertical-align: text-top;
+      font-size: x-small;
+      padding: 0px 0px 0px 0px;
+      font-weight: bold;
+    }   
+    .detalle-tabla-element-description-attribution {
+      font-weight: bold;
+    }

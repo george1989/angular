@@ -1,0 +1,42 @@
+<section class="bar-section">
+  <mat-progress-bar
+      class="bar-margin"
+      [color]="color"
+      [mode]="mode"
+      [value]="value"
+      [bufferValue]="bufferValue">
+  </mat-progress-bar>
+</section>
+<div class="login">
+  <form class="custom-form" #myForm="ngForm">
+  
+  <div class="container" >
+    <br><br>
+    <img
+    id="profile-img"
+    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+    class="profile-img-card"
+  />
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Usuario</mat-label>
+        <input id="nombreDet" matInput [(ngModel)]="login.username" required="required">
+      </mat-form-field>
+    </div>
+    <div class="form-group" >
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Contrase&ntilde;a</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="login.password" required="required" (keyup.enter)="checkLogin()">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-group">
+      <button mat-stroked-button color="primary" type="submit" (click)="checkLogin()" class="input-modelo" [disabled]="!myForm.form.valid">Log in</button>
+      </div>
+  </div>
+
+</form>
+</div>

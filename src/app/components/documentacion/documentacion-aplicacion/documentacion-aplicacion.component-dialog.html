@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>{{data.idApl}}</h1>
+<div mat-dialog-content>
+  <div >
+      <div class="form-group" hidden="true">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Id</mat-label>
+          <input id="id" disabled="true" readonly matInput [(ngModel)]="data.id">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Aplicaci&oacute;n</mat-label>
+        <input id="idApl" readonly matInput [(ngModel)]="data.idApl">
+      </mat-form-field>
+      </div>
+      <div class="form-group" hidden="true">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>idMat</mat-label>
+          <input id="idMat" readonly matInput [(ngModel)]="data.idMat">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Detalles</mat-label>
+          <input id="generalDap" readonly matInput [(ngModel)]="data.generalDap">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Opciones Aplica</mat-label>
+          <input id="aplicaDap" readonly matInput [(ngModel)]="data.aplicaDap">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Opciones No Aplica</mat-label>
+          <input id="noAplicaDap" readonly matInput [(ngModel)]="data.noAplicaDap">
+        </mat-form-field>
+      </div>
+    </div>
+</div>

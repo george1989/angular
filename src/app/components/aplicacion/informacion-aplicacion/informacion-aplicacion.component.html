@@ -1,0 +1,80 @@
+<div>
+    <div >
+
+      <div class="columna-nombre"  hidden="true">    
+          <label><strong>Id: </strong></label>
+      </div>
+      <div class="columna-detalle"  hidden="true">
+        <textarea >{{ currentAplicacion.id }}</textarea>
+      </div>
+      <div class="columna-nombre">
+        <label><strong>Nombre: </strong></label> 
+      </div>
+      <div class="columna-detalle">
+        <textarea class="input-modelo">{{ currentAplicacion.nombreApl }}</textarea>
+      </div>
+      <div class="columna-nombre">
+        <label><strong>Description: </strong></label>
+      </div>
+      <div class="columna-detalle">
+        <textarea  rows="10" wrap="hard" class="input-modelo">{{ currentAplicacion.descripcionApl }}</textarea>
+      </div>
+      <div  class="columna-nombre">
+        <label><strong>Tipo: </strong></label>      
+      </div>
+      <div  class="columna-detalle">   
+        <mat-form-field disabled="true" class="combo-disable">
+          <mat-select [value]="currentAplicacion.tipoApl"id="tipoApl" disabled="true">
+            <mat-option *ngFor="let value of detalleCatalogoTipo" [value]="value.id">{{value.nombreDet}}</mat-option>
+          </mat-select>.
+        </mat-form-field>
+      </div>
+      <div  class="columna-nombre">
+        <label><strong>Version: </strong></label>
+      </div>
+      <div  class="columna-detalle">
+        <textarea class="input-modelo">{{ currentAplicacion.versionApl }}</textarea>
+      </div>
+      <div  class="columna-nombre">
+        <label><strong>Estado: </strong></label>
+      </div>
+      <div  class="columna-detalle">
+        <mat-form-field disabled="true" class="combo-disable">
+          <mat-select [value]="currentAplicacion.estadoApl" id="estadoApl" disabled="true">
+            <mat-option *ngFor="let value of detalleCatalogoEstado" [value]="value.id">{{value.nombreDet}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div  class="columna-nombre">
+        <label><strong>Responsable: </strong></label>
+      </div>
+      <div  class="columna-detalle">
+        <textarea class="input-modelo">{{ currentAplicacion.responsableApl }}</textarea>
+      </div>
+
+      <div  class="columna-nombre">
+        <label><strong>Criticidad: </strong></label>
+      </div>
+      <div  class="columna-detalle">
+        <mat-form-field disabled="true" class="combo-disable">
+          <mat-select [value]="currentAplicacion.criticidadApl" id="criticidadApl" disabled="true">
+            <mat-option *ngFor="let value of detalleCatalogoCrit" [value]="value.id">{{value.nombreDet}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div  class="columna-nombre">
+        <label><strong>Desarrollo: </strong></label>
+      </div>
+      <div  class="columna-detalle">
+        <mat-form-field disabled="true" class="combo-disable">
+          <mat-select [value]="currentAplicacion.desarrolloApl" id="desarrolloApl" disabled="true">
+            <mat-option *ngFor="let value of detalleCatalogoDesa" [value]="value.id">{{value.nombreDet}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </div>
+  
+
+  </div>

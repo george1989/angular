@@ -1,0 +1,9 @@
+  .button-login{
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    text-align: right;
+    float: right;
+  }
+  .fill-remaining-space{
+    flex: 1 1 auto;
+  }

@@ -1,0 +1,103 @@
+<header>
+  <mat-toolbar color="primary">
+    <span>
+      <img *ngIf="!loginInit" src="https://www.dinersclub.com.ec/themes/contrib/barebones_enhanced/assets/images/logo-diners-white.svg">
+    </span>
+    <span>
+      <img *ngIf="loginInit" [matMenuTriggerFor]="menuInicio" #menuTriggerInicio="matMenuTrigger" 
+      (mouseover)="menuTriggerInicio.openMenu()"  src="https://www.dinersclub.com.ec/themes/contrib/barebones_enhanced/assets/images/logo-diners-white.svg">
+    </span>
+    
+    <mat-menu #menuInicio="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item [matMenuTriggerFor]="applicacionMenu" #menuTrigger="matMenuTrigger" 
+      (mouseover)="menuTrigger.openMenu()" *ngIf="loginInit"> Aplicaci&oacute;n </button>
+      <button  mat-menu-item [matMenuTriggerFor]="catalogoMenu" #menuTriggerCata="matMenuTrigger" 
+      (mouseover)="menuTriggerCata.openMenu()" *ngIf="loginInit"> Cat&aacute;logos </button>
+      <button  mat-menu-item [matMenuTriggerFor]="arqMenu" #menuTriggerArq="matMenuTrigger" 
+      (mouseover)="menuTriggerArq.openMenu()" *ngIf="loginInit"> Arquitectura </button>
+      <button  mat-menu-item [matMenuTriggerFor]="arqAdmin" #menuTriggerAdm="matMenuTrigger" 
+      (mouseover)="menuTriggerAdm.openMenu()" *ngIf="isLoginAdmin"> Administraci&oacute;n </button>
+    </mat-menu>
+    
+    <mat-menu #applicacionMenu="matMenu" [overlapTrigger]="false">
+      <button color="primary" mat-menu-item routerLink="aplicacion">
+        <mat-icon>dashboard</mat-icon>
+        <span>Visi&oacute;n General</span>
+      </button>
+    </mat-menu>
+
+    
+    <mat-menu #catalogoMenu="matMenu" [overlapTrigger]="false">
+      <button color="primary" mat-menu-item routerLink="catalogo">
+        <mat-icon>toc</mat-icon>
+        <span>Generales</span>
+      </button>
+      <button color="primary" mat-menu-item routerLink="servidor">
+        <mat-icon>view_list</mat-icon>
+        <span>Servidor</span>
+      </button>
+    </mat-menu>
+
+    
+    <mat-menu #arqMenu="matMenu" [overlapTrigger]="false">
+      <button color="primary" mat-menu-item routerLink="documentacion">
+        <mat-icon>toc</mat-icon>
+        <span>Documentaci&oacute;n</span>
+      </button>
+      <button color="primary" mat-menu-item routerLink="documentacionArq">
+        <mat-icon>view_list</mat-icon>
+        <span>Matriz Documentaci&oacute;n</span>
+      </button>
+      <button color="primary" mat-menu-item routerLink="arquitecturaRecurso">
+        <mat-icon>apps</mat-icon>
+        <span>Recursos</span>
+      </button>
+      <button color="primary" mat-menu-item routerLink="hitoRequerimiento">
+        <mat-icon>assignment</mat-icon>
+        <span>Requerimientos</span>
+      </button>
+      <button color="primary" mat-menu-item routerLink="estandar">
+        <mat-icon>assignment</mat-icon>
+        <span>Estandares</span>
+      </button>
+      <button color="primary" mat-menu-item routerLink="ecr">
+        <mat-icon>policy</mat-icon>
+        <span>Vulnerabilidades ECR </span>
+      </button>
+  
+    </mat-menu>
+    
+
+    
+    
+    <mat-menu #arqAdmin="matMenu" [overlapTrigger]="false">
+      <button color="primary" mat-menu-item routerLink="adminUser">
+        <mat-icon>manage_accounts</mat-icon>
+        <span>A&ntilde;adir Usuario</span>
+      </button> 
+    </mat-menu>
+    <span class="fill-remaining-space"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu"  #menuTriggerUser="matMenuTrigger" 
+    (mouseover)="menuTriggerUser.openMenu()"  >
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item disabled *ngIf="loginInit">
+        <mat-icon>face</mat-icon>
+        <span>{{user}}</span>
+      </button>
+      <button mat-menu-item disabled *ngIf="loginInit">
+        <mat-icon>alternate_email</mat-icon>
+        <span>{{email}}</span>
+      </button>
+      <button mat-menu-item routerLink="logout" *ngIf="loginInit">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button> 
+      <button mat-menu-item routerLink="login" *ngIf="!loginInit">
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </button> 
+    </mat-menu>
+  </mat-toolbar>
+</header>

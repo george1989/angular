@@ -1,0 +1,88 @@
+<h1 mat-dialog-title>{{data.idDoc}}</h1>
+<div mat-dialog-content>
+  <div>
+    <div class="form-group" hidden="true">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Id</mat-label>
+      <input id="id"  readonly matInput [(ngModel)]="data.id">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Metodolog&iacute;a</mat-label>
+      <input id="metodologiaMat"  readonly matInput [(ngModel)]="data.metodologiaMat">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Area</mat-label>
+      <input id="areaMat"  readonly matInput [(ngModel)]="data.areaMat">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Etapa</mat-label>
+      <input id="etapaMat"  readonly matInput [(ngModel)]="data.etapaMat">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Documento</mat-label>
+      <input id="idDoc"  readonly matInput [(ngModel)]="data.idDoc">
+      </mat-form-field>
+    </div>
+    <div class="form-group" >
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Publicaci&oacute;n</mat-label>
+      <input id="publicacionMat" readonly matInput [(ngModel)]="data.publicacionMat">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Firma</mat-label>
+      <input id="firmaMat"  readonly matInput [(ngModel)]="data.firmaMat">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Firmante</mat-label>
+      <input id="firmanteMat" readonly matInput [(ngModel)]="data.firmanteMat">
+      </mat-form-field>
+    </div>
+    <div class="form-group" >
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Versiones</mat-label>
+      <textarea id="versionesMat" readonly matInput [(ngModel)]="data.versionesMat"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Obligatorio</mat-label>
+      <input id="obligatorioMat"  readonly matInput [(ngModel)]="data.obligatorioMat">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Observaciones</mat-label>
+      <textarea id="observacionMat" readonly matInput [(ngModel)]="data.observacionMat"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+      <mat-label>Notas</mat-label>
+      <textarea id="notaMat" readonly matInput [(ngModel)]="data.notaMat"></textarea>
+      </mat-form-field>
+    </div>
+
+    </div>
+
+
+    <div class="card">
+			<h5 class="card-header">Consideraciones</h5>
+			<div class="card-body">
+			  <app-documentacion-aplicacion [viewMode]="true" [currentMatriz]="data"></app-documentacion-aplicacion>
+			</div>
+		  </div>
+
+
+</div>

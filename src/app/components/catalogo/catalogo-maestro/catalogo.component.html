@@ -1,0 +1,132 @@
+<div>
+	<div>
+		<mat-card class="banner">
+			<br><br>
+			<br><br>
+			<mat-card-title>CATALOGOS</mat-card-title>
+		  </mat-card>
+		  <br>
+<h2 class="title-modelo"></h2>
+  <mat-tab-group [(selectedIndex)]="selectedTabIndex">
+    <mat-tab label="Catalogo">
+      
+      <div class="container" *ngIf="!submitted">
+        <div class="form-group" hidden="true">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Id</mat-label>
+            <input id="id" disabled="true" matInput [(ngModel)]="newCatalogo.id">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Nombre</mat-label>
+            <input id="nombreCat" matInput [(ngModel)]="newCatalogo.nombreCat">
+          </mat-form-field>
+        </div>
+        
+        <div class="form-group">
+          <button mat-mini-fab color="primary"  (click)="saveCatalogo()">
+            <mat-icon>save</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary"  (click)="cleanPanel()">
+            <mat-icon>insert_drive_file</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary"  (click)="disablePanel()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <br>
+          <br>
+          </div>
+    </div>
+        <div >
+          
+          <button mat-mini-fab color="primary"  (click)="enablePanel()" *ngIf="submitted">
+            <mat-icon>add</mat-icon>
+          </button>
+          <br><br>
+          <div *ngIf="tableActive">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Busqueda..."
+                [(ngModel)]="title"
+                (keyup)="searchTitle()"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary"
+                  (click)="searchTitle()"            
+                >
+                  Busqueda
+                </button>
+              </div>
+            </div>
+
+
+
+
+
+
+            <div *ngIf="tableActive">
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef > Id </th>
+                <td mat-cell *matCellDef="let element" > {{element.id}} </td>
+              </ng-container>
+              <ng-container matColumnDef="nombreApl">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombreCat}} </td>
+              </ng-container>
+              
+              <ng-container matColumnDef="getDetalle">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button color="primary" matTooltip="Listar propiedades item"  (click)="setActiveAplicacion(element)">
+                  <mat-icon>list_alt</mat-icon>
+                </button> 
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="getEdit">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button color="primary"  
+                matTooltip="Editar item"
+                (click)="editCatalogo(element)">
+                  <mat-icon>edit</mat-icon>
+                </button> 
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"  [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+              </table>
+            </div>
+
+
+
+
+          </div>
+          
+              
+      </div>
+    </mat-tab>
+    <mat-tab label="Detalle">
+      <div class="card">
+        <div class="card-body">          
+            <app-catalogo-detalle
+            [viewMode]=true
+            [idCatalogo]=currentCatalogo.id
+            [nomCatalogo]=currentCatalogo.nombreCat
+          ></app-catalogo-detalle>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+
+  PRUEBA
+
+</div>
+
+
+</div>

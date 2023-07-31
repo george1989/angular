@@ -1,0 +1,39 @@
+{
+    "apiVersion": "v1",
+    "data": {
+        "enemies": "aliens",
+        "enemies.cheat": "true",
+        "enemies.cheat.level": "noGoodRotten",
+        "lives": "3",
+        "secret.code.allowed": "true",
+        "secret.code.passphrase": "UUDDLRLRBABAS"
+    },
+    "kind": "ConfigMap",
+    "metadata": {
+        "creationTimestamp": "2022-11-16T21:35:31Z",
+        "managedFields": [
+            {
+                "apiVersion": "v1",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:data": {
+                        ".": {},
+                        "f:enemies": {},
+                        "f:enemies.cheat": {},
+                        "f:enemies.cheat.level": {},
+                        "f:lives": {},
+                        "f:secret.code.allowed": {},
+                        "f:secret.code.passphrase": {}
+                    }
+                },
+                "manager": "oc",
+                "operation": "Update",
+                "time": "2022-11-16T21:35:31Z"
+            }
+        ],
+        "name": "front-dinersclub-arquitectura",
+        "namespace": "dinersclub-gestion-fraude-dev",
+        "resourceVersion": "485027401",
+        "uid": "0eb172d6-434e-47a8-bc78-910eea14e6d0"
+    }
+}

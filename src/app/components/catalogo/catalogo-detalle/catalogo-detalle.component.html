@@ -1,0 +1,63 @@
+  <h4>{{nomCatalogo}}</h4> 
+  <button mat-mini-fab color="primary"  (click)="enablePanel()" *ngIf="submitted">
+    <mat-icon>add</mat-icon>
+  </button>
+        <div class="container" *ngIf="!submitted">
+          <div class="form-group" hidden="true">
+            <mat-form-field appearance="fill" class="input-modelo">
+              <mat-label>Id</mat-label>
+              <input id="id" disabled="true" matInput [(ngModel)]="newDetalleCatalogo.id">
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="input-modelo">
+              <mat-label>Nombre</mat-label>
+              <input id="nombreDet" matInput [(ngModel)]="newDetalleCatalogo.nombreDet">
+            </mat-form-field>
+          </div>
+          
+          <div class="form-group">
+            <button mat-mini-fab color="primary"  (click)="saveDetalleCatalogo()">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary"  (click)="cleanPanel()">
+              <mat-icon>insert_drive_file</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary"  (click)="disablePanel()">
+              <mat-icon>close</mat-icon>
+            </button>
+            <br>
+            <br>
+            </div>
+      </div>
+
+      
+
+
+
+<div *ngIf="tableActive">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id" >
+      <th mat-header-cell *matHeaderCellDef > Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idCat" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> idCat </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.idCat}} </td>
+    </ng-container>
+    <ng-container matColumnDef="nombreDet">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreDet}} </td>
+    </ng-container>
+    <ng-container matColumnDef="getEdit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" matTooltip="Editar item"  (click)="editDetalleCatalogo(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+  </table>
+</div>

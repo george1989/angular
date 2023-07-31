@@ -1,0 +1,87 @@
+<div>
+  <div *ngIf="!submitted">
+    <h3>Detalles Aplicacion</h3>
+    <div class="form-group" hidden="true">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Id</mat-label>
+        <input id="id" disabled="true" matInput [(ngModel)]="newDetallesAplicacion.id">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Detalle</mat-label>
+        <input id="detalleCar" matInput [(ngModel)]="newDetallesAplicacion.detalleCar">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Clave</mat-label>
+        <input id="claveCar" matInput [(ngModel)]="newDetallesAplicacion.claveCar">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Valor</mat-label>
+        <textarea id="valorCar" matInput [(ngModel)]="newDetallesAplicacion.valorCar"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form-group" hidden="true">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>idApl</mat-label>
+        <input id="idApl" disabled="true" matInput [(ngModel)]="newDetallesAplicacion.idApl">
+      </mat-form-field>
+  </div> 
+    <div class="form-group">
+      <button mat-flat-button color="primary" (click)="saveDetallesAplicacion()">
+      <mat-icon>save</mat-icon>&nbsp;Guardar
+      </button>&nbsp;
+      <button mat-flat-button color="primary" (click)="cleanPanel()">
+      <mat-icon>insert_drive_file</mat-icon>&nbsp;Nuevo
+      </button>&nbsp;
+      <button mat-flat-button color="primary" (click)="disablePanel()">
+      <mat-icon>close</mat-icon>&nbsp;Cerrar
+      </button>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
+<div *ngIf="tableActive">
+  <button mat-flat-button color="primary" (click)="enablePanel()" *ngIf="!viewMode&&submitted">
+    <mat-icon>add</mat-icon>&nbsp;A&ntilde;adir
+  </button>
+  <br>
+  <br>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id" hidden="true">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> No. </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="detalleCar">
+      <th mat-header-cell *matHeaderCellDef> Detalle </th>
+      <td mat-cell *matCellDef="let element"> {{element.detalleCar}} </td>
+    </ng-container>
+    <ng-container matColumnDef="claveCar">
+      <th mat-header-cell *matHeaderCellDef> Clave </th>
+      <td mat-cell *matCellDef="let element"> {{element.claveCar}} </td>
+    </ng-container>
+    <ng-container matColumnDef="valorCar">
+      <th mat-header-cell *matHeaderCellDef> Valor </th>
+      <td mat-cell *matCellDef="let element"> {{element.valorCar}} </td>
+    </ng-container>
+    <ng-container matColumnDef="idApl">
+      <th mat-header-cell *matHeaderCellDef hidden="true"> idApl </th>
+      <td mat-cell *matCellDef="let element" hidden="true"> {{element.idApl}} </td>
+    </ng-container>
+    <ng-container matColumnDef="getEdit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" *ngIf="!viewMode"  matTooltip="Editar item" (click)="editDetallesAplicacion(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+  </table>
+</div>

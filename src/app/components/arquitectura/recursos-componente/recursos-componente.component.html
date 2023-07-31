@@ -1,0 +1,153 @@
+<div>
+    <div *ngIf="!submitted">
+      <mat-card class="banner">
+        <br><br>
+        <br><br>
+        <mat-card-title>RECURSOS</mat-card-title>
+        </mat-card>
+        <br>
+      <h3 >Datos Recursos</h3>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo" hidden="true">
+          <mat-label>Id</mat-label>
+          <input id="id" disabled="true" matInput [(ngModel)]="newRecurso.id">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Nombre</mat-label>
+          <input id="nombreAre" matInput [(ngModel)]="newRecurso.nombreAre">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Tipo</mat-label>
+          <mat-select id="tipoAre" value="{{newRecurso.tipoAre}}" [(ngModel)]="newRecurso.tipoAre">
+            <mat-option *ngFor="let value of detalleCatalogoTipo " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Descripcion</mat-label>
+          <textarea id="descripcionAre" matInput [(ngModel)]="newRecurso.descripcionAre"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Path</mat-label>
+          <textarea id="rutaAre" matInput [(ngModel)]="newRecurso.rutaAre"></textarea>
+        </mat-form-field>
+      </div>  
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Datos</mat-label>
+          <textarea id="datosAre" rows="5" matInput [(ngModel)]="newRecurso.datosAre"></textarea>
+        </mat-form-field>
+      </div>  
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Notas</mat-label>
+          <textarea id="notasAre" rows="5" matInput [(ngModel)]="newRecurso.notasAre"></textarea>
+        </mat-form-field>
+      </div>  
+			<div class="form-group">
+				<button mat-flat-button color="primary" (click)="saveRecurso()">
+				<mat-icon>save</mat-icon>&nbsp;Guardar
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="cleanPanel()">
+				<mat-icon>insert_drive_file</mat-icon>&nbsp;Nuevo
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="disablePanel()">
+				<mat-icon>close</mat-icon>&nbsp;Cerrar
+			  </button>
+			  <br>
+			  <br>  
+			</div> 
+    </div>
+  </div>
+  
+  <div *ngIf="tableActive">
+    <mat-card class="banner">
+			<br><br>
+			<br><br>
+			<mat-card-title>RECURSOS</mat-card-title>
+			<mat-card-content>
+				<br><br>
+				<br><br>
+				<br><br>
+			  <p>
+			  Listado de .
+			</p>
+			</mat-card-content>
+			<mat-card-footer>
+			</mat-card-footer>
+		  </mat-card>
+		  <br>
+      <button mat-flat-button color="primary" (click)="enablePanel()" *ngIf="!viewMode&&submitted">
+        <mat-icon>add</mat-icon>&nbsp;A&ntilde;adir
+      </button>
+        <br>
+        <br>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="ico">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon  color="primary" >navigate_next</mat-icon>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="id" hidden="true">
+        <th mat-header-cell *matHeaderCellDef hidden="true"> Id </th>
+        <td mat-cell *matCellDef="let element" hidden="true"> {{element.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="nombreAre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombreAre}} </td>
+      </ng-container>
+      <ng-container matColumnDef="descripcionAre">
+        <th mat-header-cell *matHeaderCellDef> Descripci&oacute;n </th>
+        <td mat-cell *matCellDef="let element"> {{element.descripcionAre}} </td>
+      </ng-container>
+      <ng-container matColumnDef="tipoAre">
+        <th mat-header-cell *matHeaderCellDef> Tipo </th>
+        <td mat-cell *matCellDef="let element">
+          <select class="tabla-sf" value="{{element.tipoAre}} " disabled="true" [(ngModel)]="element.tipoAre">
+            <option *ngFor="let value of detalleCatalogoTipo " value="{{value.id}}"> {{ value.nombreDet }}</option>
+          </select>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="rutaAre" hidden="true">
+        <th mat-header-cell *matHeaderCellDef hidden="true"> Ruta </th>
+        <td mat-cell *matCellDef="let element" hidden="true"> {{element.rutaAre}} </td>
+      </ng-container>
+      <ng-container matColumnDef="datosAre" hidden="true">
+        <th mat-header-cell *matHeaderCellDef hidden="true"> Datos </th>
+        <td mat-cell *matCellDef="let element" hidden="true"> {{element.datosAre}} </td>
+      </ng-container>
+      <ng-container matColumnDef="notasAre" hidden="true">
+        <th mat-header-cell *matHeaderCellDef hidden="true"> Notas </th>
+        <td mat-cell *matCellDef="let element" hidden="true"> {{element.notasAre}} </td>
+      </ng-container>
+      <ng-container matColumnDef="getDetail">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" *ngIf="!viewMode" matTooltip="Abrir URL" (click)="openRecurso(element); $event.stopPropagation();">
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="getEdit">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" *ngIf="!viewMode" matTooltip="Editar item" (click)="editRecurso(element); $event.stopPropagation();">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"  
+      (mouseover)="row.hovered = true" (mouseout)="row.hovered = false" (click)="openDialog(row)"></tr>
+    </table>
+  </div>
+  

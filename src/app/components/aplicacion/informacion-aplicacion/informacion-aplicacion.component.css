@@ -1,0 +1,40 @@
+table{
+  width: 100%;
+ }
+.input-modelo{
+  width: 100%;
+  background-color: inherit;
+  border-width: 0ch;
+  text-align: justify;
+  appearance:none; 
+ } 
+.columna-nombre {
+    width:20%;
+    float:left;
+    line-height: 2;
+  }
+  .columna-detalle {
+    width:80%;
+    float:left;
+    line-height: 2;
+  }
+  
+.combo-disable{
+  width: 100%;
+  background-color: inherit;
+  border-width: 0ch;
+  text-align: justify;
+  appearance:none; 
+}
+  @media (max-width: 500px) {
+    
+    .columna-nombre {
+      width:auto;
+      float:none;
+    }
+    .columna-detalle {
+      width:auto;
+      float:none;
+    }
+    
+  }

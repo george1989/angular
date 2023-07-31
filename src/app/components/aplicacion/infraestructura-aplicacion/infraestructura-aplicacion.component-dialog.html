@@ -1,0 +1,60 @@
+<h1 mat-dialog-title>{{data.nombreDet}}</h1>
+<div mat-dialog-content>
+  <div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo" hidden="true">
+        <mat-label>id</mat-label>
+        <input id="id" readonly matInput [(ngModel)]="data.id">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Ambiente</mat-label>
+        <input id="nombreDet" readonly matInput [(ngModel)]="data.nombreDet">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Ruta Aplicacion</mat-label>
+        <input id="rutaInf" readonly matInput [(ngModel)]="data.rutaInf">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Detalle</mat-label>
+        <textarea id="detalleInf" readonly matInput [(ngModel)]="data.detalleInf"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Servidor</mat-label>
+        <input id="nombreSer" readonly matInput [(ngModel)]="data.nombreSer">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Ip Servidor</mat-label>
+        <input id="ipSer" readonly matInput [(ngModel)]="data.ipSer">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Detalle Servidor</mat-label>
+        <input id="detalleSer" readonly matInput [(ngModel)]="data.detalleSer">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>SSO Servidor</mat-label>
+        <input id="ssoSer" readonly matInput [(ngModel)]="data.ssoSer">
+      </mat-form-field>
+    </div>
+    <div class="form-group" hidden="true">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>idApl</mat-label>
+        <input id="idApl" readonly matInput [(ngModel)]="data.idApl">
+      </mat-form-field>
+  </div> 
+    </div>
+
+</div>

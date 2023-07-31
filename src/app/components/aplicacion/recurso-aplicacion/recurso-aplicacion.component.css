@@ -1,0 +1,38 @@
+table{
+  width: 100%;
+ }
+ .input-modelo{
+  width: 100%;
+ } 
+ .mat-header-cell{
+  font-size: small;
+  font-weight: bold;
+  text-align: left;
+ }
+ .mat-cell{
+  font-size: x-small;
+  padding: 8px 8px 8px 8px;
+ }
+ .tabla-sf{
+  font-size: x-small;
+  background-color: inherit;
+  border-width: 0ch;
+  width: 100px;
+  appearance:none; 
+ }
+   .mat-column-nombreRec{
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    width: 20% !important;
+  }
+  .mat-column-tipoRec{
+   word-wrap: break-word !important;
+   white-space: unset !important;
+   width: 20% !important;
+ }
+ .mat-column-descripcionRec{
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  width: 50% !important;
+}
+

@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>{{data.nombreAre}}</h1>
+<div mat-dialog-content>
+  <div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo" hidden="true">
+        <mat-label>Id</mat-label>
+        <input id="id" disabled="true" readonly matInput [(ngModel)]="data.id">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Nombre</mat-label>
+        <input id="nombreAre" readonly matInput [(ngModel)]="data.nombreAre">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Tipo</mat-label>
+        <input id="tipoAre" readonly matInput [(ngModel)]="data.tipoAre">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Descripcion</mat-label>
+        <textarea id="descripcionAre" readonly matInput [(ngModel)]="data.descripcionAre"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Path</mat-label>
+        <textarea id="rutaAre" readonly matInput [(ngModel)]="data.rutaAre"></textarea>
+      </mat-form-field>
+    </div>  
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Datos</mat-label>
+        <textarea id="datosAre" rows="5" readonly matInput [(ngModel)]="data.datosAre"></textarea>
+      </mat-form-field>
+    </div>  
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Notas</mat-label>
+        <textarea id="notasAre" rows="5" readonly matInput [(ngModel)]="data.notasAre"></textarea>
+      </mat-form-field>
+    </div>  
+
+    </div>
+</div>

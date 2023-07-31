@@ -1,0 +1,143 @@
+table{
+    width: 100%;
+   }
+   .banner{
+     background-image: url("https://gitlab.dce.ec/arquitectura/recursos/diagramas/-/raw/main/banner.png");
+     background-size: 100%;
+     background-position: center top;
+     color: white;
+   }
+   .input-modelo{
+    width: 100%;
+   } 
+   .title-modelo{
+    width: 100%;
+    text-align: center;
+   } 
+   .mat-header-cell{
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+   }
+   .mat-cell{
+    font-size: x-small;
+    padding: 8px 8px 8px 8px;
+   }
+   .tabla-sf{
+    font-size: x-small;
+    background-color: inherit;
+    border-width: 0ch;
+    width: 50px;
+    appearance:none; 
+   }
+   .tabla-sf-lar{
+    font-size: x-small;
+    background-color: inherit;
+    border-width: 0ch;
+    width: 90%;
+    text-align: center;
+    appearance:none; 
+   }
+   .tabla-sf-com{
+    font-size: x-small;
+    background-color: inherit;
+    border-width: 0ch;
+    width: 90%;
+    text-align: center;
+    appearance:none; 
+   }
+ 
+   .mat-column-id{
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    width: 1% !important;
+  }
+  .mat-column-areaMat{
+   word-wrap: break-word !important;
+   white-space: unset !important;
+   width: 10% !important;
+ }
+   
+  .mat-column-etapaMat{
+   word-wrap: break-word !important;
+   white-space: unset !important;
+   width: 15% !important;
+ }
+   
+ .mat-column-metodologiaMat{
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  width: 10% !important;
+ }
+ 
+ .mat-column-idDoc{
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  width: 20% !important;
+}
+   
+.mat-column-firmaMat{
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  width: 10% !important;
+ }
+   
+.mat-column-firmanteMat{
+ word-wrap: break-word !important;
+ white-space: unset !important;
+ width: 10% !important;
+}
+
+.mat-column-obligatorioMat{
+ word-wrap: break-word !important;
+ white-space: unset !important;
+ width: 10% !important;
+}
+   
+.mat-column-observacionMat{
+ word-wrap: break-word !important;
+ white-space: unset !important;
+ width: 10% !important;
+}
+   
+.mat-column-notaMat{
+ word-wrap: break-word !important;
+ white-space: unset !important;
+ width: 10% !important;
+}
+
+
+
+
+tr.detalle-tabla-detail-row {
+  height: 0;
+}
+.detalle-tabla-element-row td {
+  border-bottom-width: 0;
+}    
+.detalle-tabla-element-detail {
+  overflow: hidden;
+  display: flex;
+  vertical-align: text-top;
+}      
+.detalle-tabla-element-description {
+  vertical-align: text-top;
+  font-size: x-small;
+  padding: 2px 2px 2px 2px;
+  width: 100%;
+}  
+.detalle-tabla-element-description-title {
+  vertical-align: text-top;
+  font-size: x-small;
+  padding: 0px 0px 0px 0px;
+  font-weight: bold;
+}   
+.detalle-tabla-element-description-attribution {
+  font-weight: bold;
+}   
+.view-textArea{
+  width: 100%;
+  height: 100%;
+  border-width: 0ch;
+  appearance:none; 
+ } 

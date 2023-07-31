@@ -1,0 +1,192 @@
+<div>
+  <div *ngIf="!submitted">
+    <h3>Ingreso Informaci&oacute;n</h3>
+      <div class="form-group" hidden="true">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Id</mat-label>
+          <input id="id" disabled="true" matInput [(ngModel)]="newLogs.id">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Nombre</mat-label>
+          <input id="nombreLog" matInput [(ngModel)]="newLogs.nombreLog">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Descripcion</mat-label>
+          <textarea id="descripcionLog" rows="7" wrap="hard" matInput [(ngModel)]="newLogs.descripcionLog"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Tipo</mat-label>
+        <mat-select id="tipoLog" value="{{newLogs.tipoLog}}" [(ngModel)]="newLogs.tipoLog">
+          <mat-option *ngFor="let value of detalleCatalogoTipo " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Fuente Geneneradora</mat-label>
+          <input id="fueGenLog" matInput [(ngModel)]="newLogs.fueGenLog">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Sincronizacion</mat-label>
+        <mat-select id="sincronizacionLog" value="{{newLogs.sincronizacionLog}}" [(ngModel)]="newLogs.sincronizacionLog">
+          <mat-option *ngFor="let value of detalleCatalogoSincro " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Formato</mat-label>
+          <input id="formatoLog" matInput [(ngModel)]="newLogs.formatoLog">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Retencion</mat-label>
+          <input id="retencionLog" matInput [(ngModel)]="newLogs.retencionLog">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Backup</mat-label>
+          <input id="backupLog" matInput [(ngModel)]="newLogs.backupLog">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Frecuencia Backup</mat-label>
+          <input id="freBacLog" matInput [(ngModel)]="newLogs.freBacLog">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>Monitoreo</mat-label>
+          <input id="monitoreoLog" matInput [(ngModel)]="newLogs.monitoreoLog">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Servidor</mat-label>
+        <mat-select id="idSer" value="{{newLogs.idSer}}" [(ngModel)]="newLogs.idSer">
+          <mat-option *ngFor="let value of detalleCatalogoSer " value="{{value.id}}"> {{ value.nombreSer }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+      <div class="form-group" hidden="true">
+        <mat-form-field appearance="fill" class="input-modelo">
+          <mat-label>idApl</mat-label>
+          <input id="idApl" disabled="true" matInput [(ngModel)]="newLogs.idApl">
+        </mat-form-field>
+    </div> 
+			<div class="form-group">
+				<button mat-flat-button color="primary" (click)="saveLogs()">
+				<mat-icon>save</mat-icon>&nbsp;Guardar
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="cleanPanel()">
+				<mat-icon>insert_drive_file</mat-icon>&nbsp;Nuevo
+			  </button>&nbsp;
+			  <button mat-flat-button color="primary" (click)="disablePanel()">
+				<mat-icon>close</mat-icon>&nbsp;Cerrar
+			  </button>
+			  <br>
+			  <br>
+			</div>
+    </div>
+</div>
+<div *ngIf="tableActive">
+  <button mat-flat-button color="primary" (click)="enablePanel()" *ngIf="!viewMode&&submitted">
+    <mat-icon>add</mat-icon>&nbsp;A&ntilde;adir
+  </button>
+  <br>
+  <br>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="ico">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon  color="primary" >navigate_next</mat-icon>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="id" hidden="true">
+    <th mat-header-cell *matHeaderCellDef hidden="true"> Id </th>
+    <td mat-cell *matCellDef="let element" hidden="true"> {{element.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="nombreLog">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombreLog}} </td>
+  </ng-container>
+  <ng-container matColumnDef="descripcionLog">
+    <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+    <td mat-cell *matCellDef="let element"> {{element.descripcionLog}} </td>
+  </ng-container>
+  <ng-container matColumnDef="tipoLog">
+    <th mat-header-cell *matHeaderCellDef> Tipo </th>
+    <td mat-cell *matCellDef="let element">
+      <select value="{{element.tipoLog}}" class="tabla-sf" disabled="true">
+        <option *ngFor="let value of detalleCatalogoTipo " value="{{value.id}}"> {{ value.nombreDet }}</option>
+      </select> 
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="fueGenLog" hidden="true">
+    <th mat-header-cell *matHeaderCellDef hidden="true"> Fuente </th>
+    <td mat-cell *matCellDef="let element" hidden="true"> {{element.fueGenLog}} </td>
+  </ng-container>
+  <ng-container matColumnDef="sincronizacionLog" hidden="true">
+    <th mat-header-cell *matHeaderCellDef hidden="true"> Sincronizacion </th>
+    <td mat-cell *matCellDef="let element" hidden="true">
+      <select value="{{element.sincronizacionLog}}" class="tabla-sf" disabled="true">
+        <option *ngFor="let value of detalleCatalogoSincro " value="{{value.id}}"> {{ value.nombreDet }}</option>
+      </select> 
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="formatoLog" hidden="true">
+    <th mat-header-cell *matHeaderCellDef hidden="true"> Formato </th>
+    <td mat-cell *matCellDef="let element" hidden="true"> {{element.formatoLog}} </td>
+  </ng-container>
+  <ng-container matColumnDef="retencionLog" hidden="true">
+    <th mat-header-cell *matHeaderCellDef hidden="true"> Retencion </th>
+    <td mat-cell *matCellDef="let element" hidden="true"> {{element.retencionLog}} </td>
+  </ng-container>
+  <ng-container matColumnDef="backupLog" hidden="true">
+    <th mat-header-cell *matHeaderCellDef hidden="true"> Backup </th>
+    <td mat-cell *matCellDef="let element" hidden="true"> {{element.backupLog}} </td>
+  </ng-container>
+  <ng-container matColumnDef="freBacLog" hidden="true">
+    <th mat-header-cell *matHeaderCellDef hidden="true"> Frecuencia </th>
+    <td mat-cell *matCellDef="let element" hidden="true"> {{element.freBacLog}} </td>
+  </ng-container>
+  <ng-container matColumnDef="monitoreoLog">
+    <th mat-header-cell *matHeaderCellDef> Monitoreo </th>
+    <td mat-cell *matCellDef="let element"> {{element.monitoreoLog}} </td>
+  </ng-container>
+  <ng-container matColumnDef="idSer">
+    <th mat-header-cell *matHeaderCellDef> Servidor </th>
+    <td mat-cell *matCellDef="let element">
+      <select value="{{element.idSer}}"  [(ngModel)]="element.idSer"  class="tabla-sf">//disabled="true">
+        <option *ngFor="let value of detalleCatalogoSer " value="{{value.id}}"> {{ value.nombreSer }}</option>
+      </select> 
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="idApl" hidden="true">
+    <th mat-header-cell *matHeaderCellDef hidden="true"> Aplicacion </th>
+    <td mat-cell *matCellDef="let element" hidden="true"> {{element.idApl}} </td>
+  </ng-container>
+  <ng-container matColumnDef="getEdit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" *ngIf="!viewMode" matTooltip="Editar item"  (click)="editLogs(element)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"  
+  (mouseover)="row.hovered = true" (mouseout)="row.hovered = false" (click)="openDialog(row)"></tr>
+</table>
+</div>

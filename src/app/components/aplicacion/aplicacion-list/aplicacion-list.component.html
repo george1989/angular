@@ -1,0 +1,92 @@
+<div class="list row" *ngIf="estadoListado">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Buscar aplicaci&oacute;n" [(ngModel)]="title" (keyup)="searchTitle()"/>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" (click)="searchTitle()"> Buscar </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h4>Lista de Aplicaciones</h4>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let aplicacion of aplicacion; let i = index" [class.active]="i == currentIndex" (click)="setActiveAplicacion(aplicacion, i)">
+        {{ aplicacion.nombreApl }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="estadoDetalle">
+
+  <button mat-fab color="primary" (click)="activaListado()">
+    <mat-icon>home</mat-icon>
+  </button>
+  <h1 > {{title}}</h1>
+  <mat-tab-group>
+    <mat-tab label="Informacion">
+      <div class="card">
+        <h5 class="card-header">Informaci&oacute;n</h5>
+        <div class="card-body">
+          <app-informacion-aplicacion [viewMode]="true" [currentAplicacion]="currentAplicacion"></app-informacion-aplicacion>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Infraestrucctura">
+      <div class="card">
+        <h5 class="card-header">Infraestructura</h5>
+        <div class="card-body">
+          <app-infraestructura-aplicacion [viewMode]="true" [currentAplicacion]="currentAplicacion"></app-infraestructura-aplicacion>
+        </div>
+      </div>
+    </mat-tab>    
+    <mat-tab label="Componentes" >
+			<div class="card">
+			  <h5 class="card-header">Componentes</h5>
+			  <div class="card-body">
+				<app-componente-aplicacion [viewMode]="true" [currentAplicacion]="currentAplicacion"></app-componente-aplicacion>
+			  </div>
+			</div>
+		  </mat-tab>
+    <mat-tab label="Tecnologias" >
+    <div class="card">
+      <h5 class="card-header">Tecnolog&iacute;as</h5>
+      <div class="card-body">
+      <app-tecnologia-aplicacion [viewMode]="true" [currentAplicacion]="currentAplicacion"></app-tecnologia-aplicacion>
+      </div>
+    </div>
+    </mat-tab>
+    <mat-tab label="Logs">
+      <div class="card">
+        <h5 class="card-header">Logs</h5>
+        <div class="card-body">
+          <app-logs [viewMode]="true" [currentAplicacion]="currentAplicacion"></app-logs>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Detalle">
+      <div class="card">
+        <h5 class="card-header">Detalle</h5>
+        <div class="card-body">
+          <app-aplicacion-details [viewMode]="true" [currentAplicacion]="currentAplicacion"></app-aplicacion-details>
+        </div>
+      </div>
+    </mat-tab>    
+		<mat-tab label="Integraci&oacute;n" >
+		  <div class="card">
+			<h5 class="card-header">Integraci&oacute;n</h5>
+			<div class="card-body">
+			  <app-integracion-aplicacion [viewMode]="true" [currentAplicacion]="currentAplicacion"></app-integracion-aplicacion>
+			</div>
+		  </div>
+		</mat-tab>
+    <mat-tab label="Recursos">
+      <div class="card">
+        <h5 class="card-header">Recursos</h5>
+        <div class="card-body">
+          <app-recurso-aplicacion [viewMode]="true" [currentAplicacion]="currentAplicacion"></app-recurso-aplicacion>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

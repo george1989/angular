@@ -1,0 +1,193 @@
+      <div class="container" *ngIf="!submitted">
+        <mat-card class="banner">
+          <br><br>
+          <br><br>
+          <mat-card-title>ESTANDARES</mat-card-title>
+        </mat-card>
+          <br>	
+        <div class="form-group" hidden="true">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Id</mat-label>
+            <input id="id" disabled="true" matInput [(ngModel)]="newArquitecturaEstandar.id">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="fill" class="input-modelo">
+              <mat-label>Tecnolog&iacute;a</mat-label>
+              <mat-select id="tecnologiaEst" value="{{newArquitecturaEstandar.tecnologiaEst}}" [(ngModel)]="newArquitecturaEstandar.tecnologiaEst">
+                <mat-option *ngFor="let value of detalleCatalogoTecnologia " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="input-modelo">
+              <mat-label>Lenguaje</mat-label>
+              <mat-select id="lenguajeEst" value="{{newArquitecturaEstandar.lenguajeEst}}" [(ngModel)]="newArquitecturaEstandar.lenguajeEst">
+                <mat-option *ngFor="let value of detalleCatalogoLenguaje " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="input-modelo">
+              <mat-label>Descripci&oacute;n</mat-label>
+              <input id="descripcionEst" matInput [(ngModel)]="newArquitecturaEstandar.descripcionEst">
+            </mat-form-field>
+          </div>
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Componente</mat-label>
+            <mat-select id="componenteEst" value="{{newArquitecturaEstandar.componenteEst}}" [(ngModel)]="newArquitecturaEstandar.componenteEst">
+              <mat-option *ngFor="let value of detalleCatalogoComponente " value="{{value.id}}"> {{ value.nombreDet }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <button mat-flat-button color="primary" (click)="saveArquitecturaEstandar()">
+          <mat-icon>save</mat-icon>&nbsp;Guardar
+          </button>&nbsp;
+          <button mat-flat-button color="primary" (click)="cleanPanel()">
+          <mat-icon>insert_drive_file</mat-icon>&nbsp;Nuevo
+          </button>&nbsp;
+          <button mat-flat-button color="primary" (click)="disablePanel()">
+          <mat-icon>close</mat-icon>&nbsp;Cerrar
+          </button>
+          <br>
+          <br>  
+        </div>
+    </div>
+    <div *ngIf="tableActive">
+	
+            <mat-card class="banner">
+              <br><br>
+              <br><br>
+              <mat-card-title>ESTANDARES</mat-card-title>
+              <mat-card-content>
+                <br><br>
+                <br><br>
+                <br><br>
+                <p>
+                Estandares de programaci&oacute;n.
+              </p>
+              </mat-card-content>
+              <mat-card-footer>
+              </mat-card-footer>
+            </mat-card>
+              <br>	
+          
+              <button mat-flat-button color="primary" (click)="enablePanel()" *ngIf="submitted">
+            <mat-icon>add</mat-icon>&nbsp;A&ntilde;adir
+          </button>
+          <br><br>
+            <div *ngIf="tableActive">
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              <ng-container matColumnDef="id" hidden="true">
+                <th mat-header-cell *matHeaderCellDef  hidden="true"> Id </th>
+                <td mat-cell *matCellDef="let element"  hidden="true"> {{element.id}} </td>
+              </ng-container>            
+              <ng-container matColumnDef="tecnologiaEst" >
+                <th mat-header-cell *matHeaderCellDef > Tecnolog&iacute;a </th>
+                <td mat-cell *matCellDef="let element" >
+                  <select value="{{element.tecnologiaEst}}" [(ngModel)]="element.tecnologiaEst" class="tabla-sf" disabled="true">
+                    <option *ngFor="let value of detalleCatalogoTecnologia " value="{{value.id}}"> {{ value.nombreDet }}</option>
+                  </select>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="lenguajeEst" >
+                <th mat-header-cell *matHeaderCellDef > Lenguaje </th>
+                <td mat-cell *matCellDef="let element" >
+                  <select value="{{element.lenguajeEst}}" [(ngModel)]="element.lenguajeEst" class="tabla-sf" disabled="true">
+                    <option *ngFor="let value of detalleCatalogoLenguaje " value="{{value.id}}"> {{ value.nombreDet }}</option>
+                  </select>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="componenteEst" >
+                <th mat-header-cell *matHeaderCellDef > Componente</th>
+                <td mat-cell *matCellDef="let element" >
+                  <select value="{{element.componenteEst}}" [(ngModel)]="element.componenteEst" class="tabla-sf" disabled="true">
+                    <option *ngFor="let value of detalleCatalogoComponente " value="{{value.id}}"> {{ value.nombreDet }}</option>
+                  </select>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="descripcionEst">
+                <th mat-header-cell *matHeaderCellDef> Descripci&oacute;n </th>
+                <td mat-cell *matCellDef="let element"> {{element.descripcionEst}} </td>
+              </ng-container>
+              <ng-container matColumnDef="getDetalle">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button color="primary" matTooltip="Listar logica item"  (click)="setActiveAplicacion(element)">
+                  <mat-icon>extension</mat-icon>
+                </button> 
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="getRecursos">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button color="primary"  
+                matTooltip="Listar recursos item"
+                (click)="setActiveRecursos(element)">
+                  <mat-icon>view_module</mat-icon>
+                </button> 
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="getEdit">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button color="primary"  
+                matTooltip="Editar item"
+                (click)="editArquitecturaEstandar(element)">
+                  <mat-icon>edit</mat-icon>
+                </button> 
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"  [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+              </table>
+            </div>
+
+
+
+
+          </div>
+          
+      <div  class="card" *ngIf="logicaActive"> 
+        <div class="card-body"> 
+          <mat-card class="banner">
+            <br><br>
+            <br><br>
+            <mat-card-title>ESTANDARES</mat-card-title>
+          </mat-card>
+            <br>	
+          <button mat-icon-button color="primary"  (click)="setActiveHome()">
+            <mat-icon>arrow_back_ios</mat-icon>
+          </button> 
+          <label>{{title}}</label>        
+            <app-estandar-logica
+            [viewMode]=true
+            [idEstandar]=currentArquitecturaEstandar.id
+          ></app-estandar-logica>
+        </div>
+        </div>
+      <div class="card" *ngIf="recursosActive">
+        <div class="card-body"> 
+          <mat-card class="banner">
+            <br><br>
+            <br><br>
+            <mat-card-title>ESTANDARES</mat-card-title>
+          </mat-card>
+            <br>	
+          <button mat-icon-button color="primary"  (click)="setActiveHome()">
+            <mat-icon>arrow_back_ios</mat-icon>
+          </button> 
+          <label>{{title}}</label>           
+            <app-estandar-recurso
+            [viewMode]=true
+            [idEstandar]=currentArquitecturaEstandar.id
+          ></app-estandar-recurso>
+        </div>
+      </div>
+
+
+
+
+  

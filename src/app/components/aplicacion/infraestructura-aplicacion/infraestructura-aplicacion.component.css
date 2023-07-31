@@ -1,0 +1,43 @@
+table{
+  width: 100%;
+ }
+ .input-modelo{
+  width: 100%;
+ } 
+ .mat-header-cell{
+  font-size: small;
+  font-weight: bold;
+  text-align: left;
+ }
+ .mat-cell{
+  font-size: x-small;
+  padding: 8px 8px 8px 8px;
+ }
+ .tabla-sf{
+  font-size: x-small;
+  background-color: inherit;
+  border-width: 0ch;
+  width: 100%;
+  appearance:none; 
+ }
+
+   .mat-column-nombreDet{
+     word-wrap: break-word !important;
+     white-space: unset !important;
+     width: 10% !important;
+   }
+   .mat-column-rutaInf{
+     word-wrap: break-word !important;
+     white-space: unset !important;
+     width: 35% !important;
+   }
+   .mat-column-detalleInf{
+     word-wrap: break-word !important;
+     white-space: unset !important;
+     width: 45% !important;
+   }
+   .mat-column-nombreSer{
+     word-wrap: break-word !important;
+     white-space: unset !important;
+     width: 10% !important;
+   }

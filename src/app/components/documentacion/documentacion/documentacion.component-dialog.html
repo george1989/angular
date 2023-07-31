@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>{{data.nombreDoc}}</h1>
+<div mat-dialog-content>
+  <div>
+    <div class="form-group" hidden="true">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Id</mat-label>
+        <input id="id" disabled="true" readonly matInput [(ngModel)]="data.id">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>C&oacute;digo</mat-label>
+        <input id="codigoDoc" readonly matInput [(ngModel)]="data.codigoDoc">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Nombre</mat-label>
+        <input id="nombreDoc" readonly matInput [(ngModel)]="data.nombreDoc">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Descripci&oacute;n</mat-label>
+        <textarea id="descripcionDoc" rows="7" readonly wrap="hard" matInput [(ngModel)]="data.descripcionDoc"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill" class="input-modelo">
+        <mat-label>Plantilla</mat-label>
+        <textarea id="plantillaDoc"  rows="7" readonly wrap="hard" matInput [(ngModel)]="data.plantillaDoc"></textarea>
+      </mat-form-field>
+    </div>        
+<div class="form-group">
+  <mat-form-field appearance="fill" class="input-modelo">
+    <mat-label>Extenci&oacute;n</mat-label>
+    <input id="extencionDoc" readonly matInput [(ngModel)]="data.extencionDoc">
+  </mat-form-field>
+  </div>
+
+    </div>
+
+
+
+</div>

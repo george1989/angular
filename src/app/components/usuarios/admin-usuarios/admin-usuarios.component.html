@@ -1,0 +1,186 @@
+
+
+  <mat-tab-group [(selectedIndex)]="selectedTabIndex">
+    <mat-tab >
+      <div class="container" *ngIf="!editEnable">
+        <img
+        id="profile-img"
+        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        class="imagen-user"
+      /><br>
+        <div class="form-group" hidden="true">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Id</mat-label>
+            <input id="idEdit" disabled="true" matInput [(ngModel)]="editUser.id">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Usuario</mat-label>
+            <input id="usuarioEdit" matInput [(ngModel)]="editUser.username">
+          </mat-form-field>
+        </div>        
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Email</mat-label>
+            <input id="correoEdit" matInput [(ngModel)]="editUser.email">
+          </mat-form-field>
+        </div>
+        <div class="form-group" >
+        <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Rol</mat-label>
+            <mat-select id="roleEdit" [formControl]="rolgs" multiple [(ngModel)]="editUser.role" required>
+              <mat-option *ngFor="let value of rolList " value="{{value}}"> {{ value }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+        <div class="form-group">
+          <button mat-mini-fab color="primary"  (click)="editDataUser()">
+            <mat-icon>save</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary"  (click)="disablePanel()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <br>
+          <br>
+          </div>
+    </div>
+      <div class="container" *ngIf="!submitted">
+        <img
+        id="profile-img"
+        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        class="imagen-user"
+      /><br>
+        <div class="form-group" hidden="true">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Id</mat-label>
+            <input id="id" disabled="true" matInput [(ngModel)]="currentUser.id">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Usuario</mat-label>
+            <input id="usuario" matInput [(ngModel)]="currentUser.username">
+          </mat-form-field>
+        </div>
+        
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Email</mat-label>
+            <input id="correo" matInput [(ngModel)]="currentUser.email">
+          </mat-form-field>
+        </div>
+        <div class="form-group" >
+          <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Contrase&ntilde;a</mat-label>
+            <input disabled="{{editUsuario}}" matInput id="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="currentUser.password" required minlength="6" >
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="form-group" >
+          <mat-form-field appearance="fill" class="input-modelo" >
+            <mat-label>Confirmar Contrase&ntilde;a</mat-label>
+            <input disabled="{{editUsuario}}" matInput id="passwordCon" [type]="hide ? 'password' : 'text'" [(ngModel)]="passwordCon" required minlength="6">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+
+        <div class="form-group" >
+        <mat-form-field appearance="fill" class="input-modelo">
+            <mat-label>Rol</mat-label>
+            <mat-select id="role" [formControl]="rolgs" multiple [(ngModel)]="currentUser.role" required>
+              <mat-option *ngFor="let value of rolList " value="{{value}}"> {{ value }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+        <div class="form-group">
+          <button mat-mini-fab color="primary"  (click)="saveUser()">
+            <mat-icon>save</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary"  (click)="cleanPanel()">
+            <mat-icon>insert_drive_file</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary"  (click)="disablePanel()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <br>
+          <br>
+          </div>
+    </div>
+        <div >
+          
+          <button mat-mini-fab color="primary"  (click)="enablePanel()" *ngIf="submitted">
+            <mat-icon>add</mat-icon>
+          </button>
+          <br><br>
+          <div *ngIf="tableActive">
+
+            <div *ngIf="tableActive">
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              <ng-container matColumnDef="id" hidden="true">
+                <th mat-header-cell *matHeaderCellDef  hidden="true"> Id </th>
+                <td mat-cell *matCellDef="let element"  hidden="true"> {{element.id}} </td>
+              </ng-container> 
+              <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef> Usuario </th>
+                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+              </ng-container>
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+              <ng-container matColumnDef="password"  hidden="true">
+                <th mat-header-cell *matHeaderCellDef hidden="true"> Contrasena </th>
+                <td mat-cell *matCellDef="let element" hidden="true"> {{element.password}} </td>
+              </ng-container>
+              <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef> Rol </th>
+                <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+              </ng-container>
+              <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef> Estado </th>
+                <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+              </ng-container>
+              
+              <ng-container matColumnDef="getReset">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button color="primary"  
+                matTooltip="Resetear Contrasena"
+                (click)="setResetUser(element)">
+                  <mat-icon>update</mat-icon>
+                </button> 
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="getEdit">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button color="primary"  
+                matTooltip="Editar item"
+                (click)="selecEditUser(element)">
+                  <mat-icon>edit</mat-icon>
+                </button> 
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"  [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+              </table>
+            </div>
+          </div>  
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+
+
+
+  
