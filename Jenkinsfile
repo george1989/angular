@@ -2,14 +2,15 @@
 pipeline {
   agent any
   stages {   
-    stage('SonarQube analysis') {
+    stage('SonarQube') {
       steps {
       withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
         bat "C:\\Programacion\\Sonar\\sonar-scanner\\bin\\sonar-scanner.bat -Dproject.settings=C:\\Users\\georg\\git\\angular\\sonar-project.properties"
 
       }
     }
-    }    
+    }
+    
     stage('Install') {
       steps { 
           bat 'npm install' 
