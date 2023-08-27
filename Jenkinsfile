@@ -3,10 +3,10 @@ pipeline {
   agent any
   stages {   
     stage('SonarQube analysis') {
-      steps { 
-          withSonarQubeEnv(credentialsId: 'b0ea30fa9955cc795681e861e90dec3c77a67009', installationName: 'SonarQube') { // You can override the credential to be used
-            bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
-        }
+      steps {
+      withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
+        bat "C:\Programacion\Sonar\sonar-scanner\bin\sonar-scanner.bat -Dproject.settings=C:\Users\georg\git\angular\sonar-project.properties"
+
       }
     }
     stage('Install') {
