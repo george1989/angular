@@ -5,7 +5,7 @@ pipeline {
     stage('SonarQube analysis') {
       steps {
       withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
-        bat "C:\Programacion\Sonar\sonar-scanner\bin\sonar-scanner.bat -Dproject.settings=C:\Users\georg\git\angular\sonar-project.properties"
+        bat "C:\\Programacion\\Sonar\\sonar-scanner\\bin\\sonar-scanner.bat -Dproject.settings=C:\\Users\\georg\\git\\angular\\sonar-project.properties"
 
       }
     }
